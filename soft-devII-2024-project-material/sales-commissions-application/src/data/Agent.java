@@ -1,17 +1,24 @@
 package data;
 
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Agent {
 	private String name;
 	private String afm;
-	private Vector <Receipt> allReceipts;
+	private ArrayList<Receipt> allReceipts;
 	private FileAppender fileAppender;
+	private final double LOWER_THRESHOLD = 6000;
+	private final double MIDDLE_THRESHOLD = 10000;
+	private final double UPPER_THRESHOLD = 40000;
+	private final double LOWER_COMMISSION_RATE = 0.1;
+	private final double MIDDLE_COMMISSION_RATE = 0.15;
+	private final double UPPER_COMMISSION_RATE = 0.2;
+
 	
 	
 	public Agent(){
-		allReceipts = new Vector<Receipt>();
+		allReceipts = new ArrayList<Receipt>();
 	}
 	
 	public void setFileType(String fileType) {
@@ -22,7 +29,7 @@ public class Agent {
 			fileAppender = new FileAppenderXML();
 		}	
 	}
-	public Vector<Receipt> getReceipts(){
+	public ArrayList<Receipt> getReceipts(){
 		return allReceipts;
 
 	}
@@ -56,56 +63,31 @@ public class Agent {
 		return sumItems;
 	}
 	
-	public float calculateSkirtsSales(){
-		float skirtSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-			if(allReceipts.get(i).getKind().equals("Skirt")){
-				skirtSum += allReceipts.get(i).getItems();
-			}
-		}
-		return skirtSum;
-	}
 
-	public float calculateCoatsSales(){
-		float coatsSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-				if(allReceipts.get(i).getKind().equals("Coat")){
-					coatsSum += allReceipts.get(i).getItems();
-				}
-		}		
-		return coatsSum;
-	}
+	// Parametarize Method
+	public float calculateSalesByKind(String kind) {
+        float sum = 0;
+        for (Receipt receipt : allReceipts) {
+            if (receipt.getKind().equals(kind)) {
+                sum += receipt.getItems();
+            }
+        }
+        return sum;
+    }
 	
-	public float calculateTrouserSales(){
-		float trousersSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-			if(allReceipts.get(i).getKind().equals("Trouser")){
-				trousersSum += allReceipts.get(i).getItems();
-			}	
-		}
-		return trousersSum;
-	}
-	
-	public float calculateShirtsSales(){
-		float shirtSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-			if(allReceipts.get(i).getKind().equals("Shirt")){				
-				shirtSum += allReceipts.get(i).getItems();
-			}
-		}
-		return shirtSum;
-	}
-	
+	// Replace magic number with symbolic constant 
 	public double calculateCommission(){
 		double commission = 0;
-		if( this.calculateTotalSales() > 6000 && this.calculateTotalSales()<= 10000){
-			commission = 0.1*(calculateTotalSales()-6000);
+		double totalSales = this.calculateTotalSales();
+
+		if( totalSales > LOWER_THRESHOLD  && totalSales <= MIDDLE_THRESHOLD){
+			commission = LOWER_COMMISSION_RATE * (totalSales - LOWER_THRESHOLD);
 		}
-		else if(this.calculateTotalSales() > 10000 && this.calculateTotalSales() <= 40000 ){
-			commission = (((calculateTotalSales() - 10000) * 0.15) + (10000*0.1));			
+		else if(totalSales > MIDDLE_THRESHOLD && totalSales <= UPPER_THRESHOLD ){
+			commission = (((totalSales - MIDDLE_THRESHOLD) * MIDDLE_COMMISSION_RATE) + (MIDDLE_THRESHOLD * LOWER_COMMISSION_RATE));			
 		}
-		else if(this.calculateTotalSales() > 40000 ) {
-			commission = 10000*0.1 + 30000*0.15 + (calculateTotalSales() - 40000)*0.2;			
+		else if(totalSales > UPPER_THRESHOLD ) {
+			commission = ((MIDDLE_THRESHOLD * LOWER_COMMISSION_RATE + 30000 * MIDDLE_COMMISSION_RATE) + (totalSales - UPPER_THRESHOLD) * UPPER_COMMISSION_RATE);			
 		}
 		return commission;
 	}
