@@ -1,10 +1,10 @@
 package output;
 
-import data.Agent;
+import data.ReceiptManager;
 
 public abstract class Report {
 
-	protected Agent agent;
+	protected ReceiptManager receiptManager;
 	
 	public abstract void saveFile();
 }

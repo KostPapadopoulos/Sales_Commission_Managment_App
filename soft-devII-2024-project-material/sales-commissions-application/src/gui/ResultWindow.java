@@ -16,7 +16,7 @@ import javax.swing.UIManager;
 
 import output.TXTReport;
 import output.XMLReport;
-import data.Agent;
+import data.ReceiptManager;
 
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -35,7 +35,7 @@ public class ResultWindow extends JDialog {
 	private JTextField skirtSalesTextField;
 	private JTextField commissionTextField;
 	private SelectionWindow selectionWindow;
-	private Agent selectedAgent;
+	private ReceiptManager selectedReceiptManager;
 	private double totalSales;
 	private int totalItems;
 	private float shirtSales;
@@ -45,10 +45,10 @@ public class ResultWindow extends JDialog {
 	private double commission;
 
 
-	public ResultWindow(final SelectionWindow sw, Agent agent,double tSales,int tItems,
+	public ResultWindow(final SelectionWindow sw, ReceiptManager receiptManager,double tSales,int tItems,
 			float shirtS,float skirtS,float trousersS,float coatsS,double com) {
 		selectionWindow = sw;
-		selectedAgent = agent;
+		selectedReceiptManager = receiptManager;
 		totalSales = tSales;
 		totalItems = tItems;
 		shirtSales = shirtS;
@@ -233,16 +233,16 @@ public class ResultWindow extends JDialog {
 				
 	}
 	private void outputTXTButtonPressed(ActionEvent evt) {
-		TXTReport makeTXTFile = new TXTReport(selectedAgent);
+		TXTReport makeTXTFile = new TXTReport(selectedReceiptManager);
 		makeTXTFile.saveFile();
-		JOptionPane.showMessageDialog(null,"Η αναφορά αποθηκεύτηκε επιτυχώς");
+		JOptionPane.showMessageDialog(null,"οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 		
 	}
 	private void outputXMLButtonPressed(ActionEvent evt) {
-		XMLReport makeXMLFile = new XMLReport(selectedAgent);
+		XMLReport makeXMLFile = new XMLReport(selectedReceiptManager);
 		makeXMLFile.saveFile();
-		JOptionPane.showMessageDialog(null,"Η αναφορά αποθηκεύτηκε επιτυχώς");		
+		JOptionPane.showMessageDialog(null,"οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");		
 	}
 	private void okButtonPressed(ActionEvent evt) {
 		System.exit(0);		

@@ -14,18 +14,18 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import data.Agent;
+import data.ReceiptManager;
 
 public class XMLReport extends Report{
 
 		
-	public XMLReport(Agent a){
-			agent = a;
+	public XMLReport(ReceiptManager recMan){
+			receiptManager = recMan;
 	}	
 
 		
 	public void saveFile() {
-		String fullPathName =  "/users/Nick/Desktop/Reports/" + agent.getAfm() + "_SALES.xml";
+		String fullPathName =  "/users/Nick/Desktop/Reports/" + receiptManager.getAfm() + "_SALES.xml";
         try {
         	 DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
         	 DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -37,35 +37,35 @@ public class XMLReport extends Report{
         	
         	 
         	 Element name = document.createElement("Name");
-        	 name.appendChild(document.createTextNode(agent.getName()));
+        	 name.appendChild(document.createTextNode(receiptManager.getName()));
         	 agentElem.appendChild(name);
         	 
         	 Element afm = document.createElement("AFM");
-        	 afm.appendChild(document.createTextNode(agent.getAfm()));	
+        	 afm.appendChild(document.createTextNode(receiptManager.getAfm()));	
         	 agentElem.appendChild(afm);
         	 
         	 Element totalSales = document.createElement("TotalSales");
-        	 totalSales.appendChild(document.createTextNode(Double.toString(agent.calculateTotalSales())));
+        	 totalSales.appendChild(document.createTextNode(Double.toString(receiptManager.calculateTotalSales())));
         	 agentElem.appendChild(totalSales);
         	 
         	 Element trouserSales = document.createElement("TrouserSales");
-        	 trouserSales.appendChild(document.createTextNode(Float.toString(agent.calculateTrouserSales())));
+        	 trouserSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Trouser"))));
         	 agentElem.appendChild(trouserSales);
         	 
         	 Element skirtsSales = document.createElement("SkirtsSales");
-        	 skirtsSales.appendChild(document.createTextNode(Float.toString(agent.calculateSkirtsSales())));
+        	 skirtsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Skirt"))));
         	 agentElem.appendChild(skirtsSales);
         	 
         	 Element shirtsSales = document.createElement("ShirtsSales");
-        	 shirtsSales.appendChild(document.createTextNode(Float.toString(agent.calculateShirtsSales())));
+        	 shirtsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Shirt"))));
         	 agentElem.appendChild(shirtsSales);
         	 
         	 Element coatsSales = document.createElement("CoatsSales");
-        	 coatsSales.appendChild(document.createTextNode(Float.toString(agent.calculateCoatsSales())));
+        	 coatsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Coat"))));
         	 agentElem.appendChild(coatsSales);
         	 
         	 Element commission = document.createElement("Commission");
-        	 commission.appendChild(document.createTextNode(Double.toString(agent.calculateCommission())));
+        	 commission.appendChild(document.createTextNode(Double.toString(receiptManager.calculateCommission())));
         	 agentElem.appendChild(commission);
         
         	 

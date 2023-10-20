@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
 
-import data.Agent;
+import data.ReceiptManager;
 import data.Coat;
 import data.Receipt;
 import data.Shirt;
@@ -62,13 +62,13 @@ public class SelectionWindow extends JDialog {
 	private float trousersSales;
 	private double commission;
 	private InputWindow inputDialog;
-	private Agent selectedAgent;
+	private ReceiptManager selectedReceiptManager;
 	@SuppressWarnings("unused")
 	private String fileType;
 	
-	public SelectionWindow(InputWindow dialog, Agent agent, String fileTypeFlag) {
+	public SelectionWindow(InputWindow dialog, ReceiptManager receiptManager, String fileTypeFlag) {
 		inputDialog = dialog;
-		selectedAgent = agent;
+		selectedReceiptManager = receiptManager;
 		fileType = fileTypeFlag;
 		initialise();
 		
@@ -383,10 +383,10 @@ public class SelectionWindow extends JDialog {
 		});
 		
 		try{
-			agentNameTextField.setText(selectedAgent.getName());
+			agentNameTextField.setText(selectedReceiptManager.getName());
 		}catch(NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"Προέκυψε κάποιο πρόβλημα, προσπαθήστε ξανά");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½, οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½");
 
 		}
 		
@@ -397,40 +397,40 @@ public class SelectionWindow extends JDialog {
 	
 	protected void okButtonPressed(ActionEvent evt) {
 		if(totalSalesCheckBox.isSelected())
-			 totalSales = selectedAgent.calculateTotalSales();
+			 totalSales = selectedReceiptManager.calculateTotalSales();
 		else
 			totalSales = -1;
 		
 		if(totalItemsCheckBox.isSelected())
-			totalItems = selectedAgent.calculateTotalItems();
+			totalItems = selectedReceiptManager.calculateTotalItems();
 		else
 			totalItems = -1;
 		
 		if(shirtRadio.isSelected())
-			shirtSales = selectedAgent.calculateShirtsSales();
+			shirtSales = selectedReceiptManager.calculateSalesByKind("Shirt");
 		else
 			shirtSales = -1;
 		
 		if(skirtRadio.isSelected()  )
-			skirtSales = selectedAgent.calculateSkirtsSales();
+			skirtSales = selectedReceiptManager.calculateSalesByKind("Skirt");
 		else 
 			skirtSales = -1;
 		
 		if(coatRadio.isSelected())
-			coatsSales = selectedAgent.calculateCoatsSales();
+			coatsSales = selectedReceiptManager.calculateSalesByKind("Coat");
 		else 
 			coatsSales = -1;
 		
 		if(trousersRadio.isSelected())
-			trousersSales = selectedAgent.calculateTrouserSales();
+			trousersSales = selectedReceiptManager.calculateSalesByKind("Trouser");
 		else 
 			trousersSales = -1;
 		
 		if(commissionCheckBox.isSelected())
-			commission = selectedAgent.calculateCommission();
+			commission = selectedReceiptManager.calculateCommission();
 		else
 			commission = -1;
-		ResultWindow rs = new ResultWindow(this,selectedAgent, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
+		ResultWindow rs = new ResultWindow(this,selectedReceiptManager, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
 		rs.setVisible(true);
 		this.setVisible(false);		
 	}
@@ -442,15 +442,15 @@ public class SelectionWindow extends JDialog {
 				&& itemsTextField.getText().isEmpty() && companyTextField.getText().isEmpty()
 				&& countryTextField.getText().isEmpty() && cityTextField.getText().isEmpty()
 				&& streetTextField.getText().isEmpty() && numberTextField.getText().isEmpty()){
-			JOptionPane.showMessageDialog(null,"Πρέπει να συμπληρώσετε όλα τα πεδία");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½");
 			
 		}
 		/*else if(kindTextField.toString().equalsIgnoreCase("Coats") == false && 
 				kindTextField.toString().equalsIgnoreCase("Shirts") == false &&
 				kindTextField.toString().equalsIgnoreCase("Skirts") == false &&
 				kindTextField.toString().equalsIgnoreCase("Trousers") == false){
-			JOptionPane.showMessageDialog(null,"To είδος που πρηκτολογήσατε δεν έιναι έγκυρο. Προσπαθήστε"
-					+ " ξανά συμπληρώνοντας το πεδίο kind Coats ή Shirts ή Skirts ή Trousers");
+			JOptionPane.showMessageDialog(null,"To οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½. οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½"
+					+ " οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ kind Coats οΏ½ Shirts οΏ½ Skirts οΏ½ Trousers");
 
 		}*/
 			
@@ -474,17 +474,17 @@ public class SelectionWindow extends JDialog {
 	}
 
 	private void appendFile(){
-		selectedAgent.getFileAppender().setReceiptID(receiptIDTextField.getText());
-		selectedAgent.getFileAppender().setDate(dateTextField.getText());
-		selectedAgent.getFileAppender().setKind(kindTextField.getText());
-		selectedAgent.getFileAppender().setSales(salesTextField.getText());
-		selectedAgent.getFileAppender().setItems(itemsTextField.getText());
-		selectedAgent.getFileAppender().setCompany(companyTextField.getText());
-		selectedAgent.getFileAppender().setCountry(countryTextField.getText());
-		selectedAgent.getFileAppender().setCity(cityTextField.getText());
-		selectedAgent.getFileAppender().setStreet(streetTextField.getText());
-		selectedAgent.getFileAppender().setNumber(numberTextField.getText());
-		selectedAgent.getFileAppender().appendFile();
+		selectedReceiptManager.getFileAppender().setReceiptID(receiptIDTextField.getText());
+		selectedReceiptManager.getFileAppender().setDate(dateTextField.getText());
+		selectedReceiptManager.getFileAppender().setKind(kindTextField.getText());
+		selectedReceiptManager.getFileAppender().setSales(salesTextField.getText());
+		selectedReceiptManager.getFileAppender().setItems(itemsTextField.getText());
+		selectedReceiptManager.getFileAppender().setCompany(companyTextField.getText());
+		selectedReceiptManager.getFileAppender().setCountry(countryTextField.getText());
+		selectedReceiptManager.getFileAppender().setCity(cityTextField.getText());
+		selectedReceiptManager.getFileAppender().setStreet(streetTextField.getText());
+		selectedReceiptManager.getFileAppender().setNumber(numberTextField.getText());
+		selectedReceiptManager.getFileAppender().appendFile();
 	}
 	
 	private void addReceipt(){
@@ -509,13 +509,13 @@ public class SelectionWindow extends JDialog {
 			receipt.getCompany().getCompanyAddress().setCity(cityTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreet(streetTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreetNumber(Integer.parseInt(numberTextField.getText()));
-			selectedAgent.getReceipts().add(receipt);
+			selectedReceiptManager.getReceipts().add(receipt);
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
-			JOptionPane.showMessageDialog(null,"Η απόδειξη προσθέθηκε επιτυχώς");
+			JOptionPane.showMessageDialog(null,"οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"Δεν συμπληρώσατε σωστά κάποιο πεδίο, προσπαθήστε ξανά");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½, οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½");
 
 		}
 	}

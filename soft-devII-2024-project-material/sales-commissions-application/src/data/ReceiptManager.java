@@ -3,21 +3,23 @@ package data;
 
 import java.util.ArrayList;
 
-public class Agent {
+public class ReceiptManager {
 	private String name;
 	private String afm;
 	private ArrayList<Receipt> allReceipts;
 	private FileAppender fileAppender;
-	private final double LOWER_THRESHOLD = 6000;
-	private final double MIDDLE_THRESHOLD = 10000;
-	private final double UPPER_THRESHOLD = 40000;
+	private boolean res = false;
+	
+	private final double LOWER_SALES_THRESHOLD = 6000;
+	private final double MIDDLE_SALES_THRESHOLD = 10000;
+	private final double UPPER_SALES_THRESHOLD = 40000;
 	private final double LOWER_COMMISSION_RATE = 0.1;
 	private final double MIDDLE_COMMISSION_RATE = 0.15;
 	private final double UPPER_COMMISSION_RATE = 0.2;
 
 	
 	
-	public Agent(){
+	public ReceiptManager(){
 		allReceipts = new ArrayList<Receipt>();
 	}
 	
@@ -74,20 +76,47 @@ public class Agent {
         }
         return sum;
     }
+
+	public boolean isInFirstCommissionCategory(){
+		double totalSales = this.calculateTotalSales();
+
+		if ( totalSales > LOWER_SALES_THRESHOLD  && totalSales <= MIDDLE_SALES_THRESHOLD){
+			res = true;
+		}
+		return res;
+	}
+
+	public boolean isInSecondCommissionCategory() {
+		double totalSales = this.calculateTotalSales();
+		
+		if(totalSales > MIDDLE_SALES_THRESHOLD && totalSales <= UPPER_SALES_THRESHOLD ){
+			res = true;
+		}
+		return res;
+	}
+
+	public boolean isInThirdCommissionCategory() {
+		double totalSales = this.calculateTotalSales();
+
+		if(totalSales > UPPER_SALES_THRESHOLD ) {
+			res = true;
+		}
+		return res;
+	}
 	
 	// Replace magic number with symbolic constant 
 	public double calculateCommission(){
 		double commission = 0;
 		double totalSales = this.calculateTotalSales();
 
-		if( totalSales > LOWER_THRESHOLD  && totalSales <= MIDDLE_THRESHOLD){
-			commission = LOWER_COMMISSION_RATE * (totalSales - LOWER_THRESHOLD);
+		if(isInFirstCommissionCategory()){
+			commission = LOWER_COMMISSION_RATE * (totalSales - LOWER_SALES_THRESHOLD);
 		}
-		else if(totalSales > MIDDLE_THRESHOLD && totalSales <= UPPER_THRESHOLD ){
-			commission = (((totalSales - MIDDLE_THRESHOLD) * MIDDLE_COMMISSION_RATE) + (MIDDLE_THRESHOLD * LOWER_COMMISSION_RATE));			
+		else if(isInSecondCommissionCategory()){
+			commission = (((totalSales - MIDDLE_SALES_THRESHOLD) * MIDDLE_COMMISSION_RATE) + (MIDDLE_SALES_THRESHOLD * LOWER_COMMISSION_RATE));			
 		}
-		else if(totalSales > UPPER_THRESHOLD ) {
-			commission = ((MIDDLE_THRESHOLD * LOWER_COMMISSION_RATE + 30000 * MIDDLE_COMMISSION_RATE) + (totalSales - UPPER_THRESHOLD) * UPPER_COMMISSION_RATE);			
+		else if(isInThirdCommissionCategory()) {
+			commission = ((MIDDLE_SALES_THRESHOLD * LOWER_COMMISSION_RATE + 30000 * MIDDLE_COMMISSION_RATE) + (totalSales - UPPER_SALES_THRESHOLD) * UPPER_COMMISSION_RATE);			
 		}
 		return commission;
 	}

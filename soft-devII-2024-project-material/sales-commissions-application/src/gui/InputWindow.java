@@ -29,7 +29,7 @@ import java.awt.SystemColor;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import data.Agent;
+import data.ReceiptManager;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,9 +41,9 @@ public class InputWindow extends JDialog {
 	private final JPanel inputWindowPanel = new JPanel();
 	private DefaultListModel <String> listModel = new DefaultListModel <String>();
 	private JList <String> agentsList = new JList <String>();
-	private Vector <Agent> allAgents;
-	private  Agent agent = new Agent();
-	private Agent selectedAgent = null;
+	private Vector <ReceiptManager> allAgents;
+	private  ReceiptManager receiptManager = new ReceiptManager();
+	private ReceiptManager selectedrReceiptManager = null;
 	static InputWindow dialog = new InputWindow();
 	@SuppressWarnings("unused")
 	private File inputFile;
@@ -71,7 +71,7 @@ public class InputWindow extends JDialog {
 	}
 	
 	public void initialise() {
-		allAgents = new Vector <Agent>();
+		allAgents = new Vector <ReceiptManager>();
 		
 		setBackground(new Color(0, 0, 0));
 		setBounds(100, 100, 736, 472);
@@ -202,32 +202,32 @@ public class InputWindow extends JDialog {
 			File recieptFileTXT = TXTFileChooser.getSelectedFile();
 			TXTInput inputFileTXT = new TXTInput(recieptFileTXT);	
 			inputFileTXT.readFile();
-			agent = inputFileTXT.getAgent();
-			agent.setFileType("TXT");
-			agent.getFileAppender().setFileToAppend(recieptFileTXT);				
-			allAgents.add(agent);
+			receiptManager = inputFileTXT.getReceiptManager();
+			receiptManager.setFileType("TXT");
+			receiptManager.getFileAppender().setFileToAppend(recieptFileTXT);				
+			allAgents.add(receiptManager);
 			for(int i = 0; i< listModel.getSize(); i++){
-				if(agent.getName().equals(listModel.getElementAt(i))){
+				if(receiptManager.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
 
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"Ï áíôéðñüóùðïò õðÜñ÷åé Þäç óôç ëßóôá");
+				JOptionPane.showMessageDialog(null,"ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 			}
 			else{
-				listModel.addElement(agent.getName());
+				listModel.addElement(receiptManager.getName());
 				agentsList.setModel(listModel);
 				fileTypeFlag = "TXT";
 			}
 			
 		}catch (NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"Äåí åðéëÝ÷èçêå êáíÝíá áñ÷åßï");
+			JOptionPane.showMessageDialog(null,"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"ÐñïÝêõøå êÜðïéï ðñüâëçìá êáôÜ ôçí áíÜãíùóç ôïõ áñ÷åßïõ");
+			JOptionPane.showMessageDialog(null,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 	}
@@ -242,28 +242,28 @@ public class InputWindow extends JDialog {
 			File recieptFileXML = XMLFileChooser.getSelectedFile();
 			XMLInput inputFileXML = new XMLInput(recieptFileXML);	
 			inputFileXML.readFile();
-			agent = inputFileXML.getAgent();
-			agent.setFileType("XML");
-			agent.getFileAppender().setFileToAppend(recieptFileXML);				
-			allAgents.add(agent);
+			receiptManager = inputFileXML.getReceiptManager();
+			receiptManager.setFileType("XML");
+			receiptManager.getFileAppender().setFileToAppend(recieptFileXML);				
+			allAgents.add(receiptManager);
 			for(int i = 0; i< listModel.getSize(); i++){
-				if(agent.getName().equals(listModel.getElementAt(i))){
+				if(receiptManager.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
 
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"Ï áíôéðñüóùðïò õðÜñ÷åé Þäç óôç ëßóôá");
+				JOptionPane.showMessageDialog(null,"ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 			}
 			else{
-				listModel.addElement(agent.getName());
+				listModel.addElement(receiptManager.getName());
 				agentsList.setModel(listModel);
 				fileTypeFlag = "XML";
 			}
 		}catch (IllegalArgumentException e){
 		
-			JOptionPane.showMessageDialog(null,"Äåí åðéëÝ÷èçêå êáíÝíá áñ÷åßï");
+			JOptionPane.showMessageDialog(null,"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		}
         
@@ -280,7 +280,7 @@ public class InputWindow extends JDialog {
             for(int i=0; i<allAgents.size(); i++){
                 if(agentName.equals(allAgents.get(i).getName())){
                 	
-                		selectedAgent = allAgents.get(i);
+                		selectedrReceiptManager = allAgents.get(i);
                 		break;
                 		
                 }
@@ -291,11 +291,11 @@ public class InputWindow extends JDialog {
 	
 	private void okButtonPressed(ActionEvent evt) {
 		if(agentsList.isSelectionEmpty()){
-			JOptionPane.showMessageDialog(null,"Äåí Ý÷åôå åðéëÝîåé áíôéðñüóùðï");
+			JOptionPane.showMessageDialog(null,"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		}
 		else{
-			SelectionWindow sw = new SelectionWindow(dialog,selectedAgent,fileTypeFlag);
+			SelectionWindow sw = new SelectionWindow(dialog,selectedrReceiptManager,fileTypeFlag);
 			this.setVisible(false);
 			sw.setVisible(true);
 		}	

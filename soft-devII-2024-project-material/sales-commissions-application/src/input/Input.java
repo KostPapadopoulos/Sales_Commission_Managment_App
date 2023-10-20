@@ -3,7 +3,7 @@ package input;
 
 import java.io.File;
 
-import data.Agent;
+import data.ReceiptManager;
 import data.Coat;
 import data.Receipt;
 import data.Shirt;
@@ -12,7 +12,7 @@ import data.Trouser;
 
 public abstract class Input {
 	
-	protected Agent agent;
+	protected ReceiptManager receiptManager;
 	protected File inputFile;
 	protected String inputFilePath;
 	protected String name;
@@ -32,15 +32,15 @@ public abstract class Input {
 
 	
 	public Input() {
-		agent = new Agent();
+		receiptManager = new ReceiptManager();
 		kind  = new String("");
 	}
 	
 
 	
 	public void addAgent() {
-		agent.setName(name);
-		agent.setAfm(afm);
+		receiptManager.setName(name);
+		receiptManager.setAfm(afm);
 	}
 	
 	public void addReceipt( ){
@@ -70,10 +70,10 @@ public abstract class Input {
 			receipt.getCompany().getCompanyAddress().setCity(companyCity);
 			receipt.getCompany().getCompanyAddress().setStreet(companyStreet);
 			receipt.getCompany().getCompanyAddress().setStreetNumber(companyStreetNumber);
-			agent.getReceipts().add(receipt);
+			receiptManager.getReceipts().add(receipt);
 	}
-	public Agent getAgent() {
-		return agent;
+	public ReceiptManager getReceiptManager() {
+		return receiptManager;
 	}
 
 	

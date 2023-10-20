@@ -7,54 +7,54 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import data.Agent;
+import data.ReceiptManager;
 
 
 public class TXTReport extends Report{
 
 	
-	public TXTReport(Agent a){
-		agent = a;
+	public TXTReport(ReceiptManager a){
+		receiptManager = a;
 	}
 	
 	
 	public void saveFile() {
         BufferedWriter bufferedWriter = null;
         try{
-        	String fullPathName =  "/users/Nick/Desktop/Reports/" + agent.getAfm() + "_SALES.txt";
+        	String fullPathName =  "/users/Nick/Desktop/Reports/" + receiptManager.getAfm() + "_SALES.txt";
         	bufferedWriter = new BufferedWriter(new FileWriter(new File(fullPathName)));
             
-        	bufferedWriter.write("Name: " + agent.getName()); 
+        	bufferedWriter.write("Name: " + receiptManager.getName()); 
             bufferedWriter.newLine();
 
-            bufferedWriter.write("AFM: " + agent.getAfm());
+            bufferedWriter.write("AFM: " + receiptManager.getAfm());
             bufferedWriter.newLine();
             bufferedWriter.newLine();
             bufferedWriter.newLine();
 
             
-            bufferedWriter.write("Total Sales: " + agent.calculateTotalSales());
+            bufferedWriter.write("Total Sales: " + receiptManager.calculateTotalSales());
             bufferedWriter.newLine();
  
-            bufferedWriter.write("Trousers Sales: " + agent.calculateTrouserSales());
+            bufferedWriter.write("Trousers Sales: " + receiptManager.calculateSalesByKind("Trouser"));
             bufferedWriter.newLine();
 
-            bufferedWriter.write("Skirts Sales: " + agent.calculateSkirtsSales());
+            bufferedWriter.write("Skirts Sales: " + receiptManager.calculateSalesByKind("Skirt"));
             bufferedWriter.newLine();
 
-            bufferedWriter.write("Shirts Sales: " + agent.calculateShirtsSales());
+            bufferedWriter.write("Shirts Sales: " + receiptManager.calculateSalesByKind("Shirt"));
             bufferedWriter.newLine();
             
-            bufferedWriter.write("Coats Sales: " + agent.calculateCoatsSales());
+            bufferedWriter.write("Coats Sales: " + receiptManager.calculateSalesByKind("Coat"));
             bufferedWriter.newLine();
 
-            bufferedWriter.write("Commission: " + agent.calculateCommission());
+            bufferedWriter.write("Commission: " + receiptManager.calculateCommission());
             
         	bufferedWriter.close();
 
 
         }catch (IOException ex){
-			JOptionPane.showMessageDialog(null,"Υπήρξε κάποιο πρόβλημα κατά την αποθήκευση του αρχείου");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
         }
 		
