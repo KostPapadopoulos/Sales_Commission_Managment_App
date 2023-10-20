@@ -14,6 +14,11 @@ public class Receipt {
 		kind = new String("No specific kind");
 		company  = new Company();
 	}
+
+	public Receipt(String theKind){
+		kind = theKind;
+		company = new Company();
+	}
 	
 	public Company getCompany(){
 		
@@ -25,6 +30,9 @@ public class Receipt {
 		
 	}
 
+	public void setKind(String theKind) {
+		kind = theKind;
+	}
 	
 	public double getSales() {
 		return sales;

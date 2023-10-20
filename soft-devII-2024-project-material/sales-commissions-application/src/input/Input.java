@@ -4,11 +4,7 @@ package input;
 import java.io.File;
 
 import data.ReceiptManager;
-import data.Coat;
 import data.Receipt;
-import data.Shirt;
-import data.Skirt;
-import data.Trouser;
 
 public abstract class Input {
 	
@@ -44,21 +40,26 @@ public abstract class Input {
 	}
 	
 	public void addReceipt( ){
-		Receipt receipt;			
+		Receipt receipt;
+		// Mallon kai edw den xreiazetai to if else opws sthn Selection Window			
 			if(kind.equals("Shirts")) {
-				receipt= new Shirt();
+				receipt= new Receipt();
+				receipt.setKind("Shirt");
 
 			}
 			else if (kind.equals("Skirts")) {
-				receipt = new Skirt();
+				receipt = new Receipt();
+				receipt.setKind("Shirt");
 
 			}
 			else if (kind.equals("Trousers")) {
-				receipt = new Trouser();
+				receipt = new Receipt();
+				receipt.setKind("Trouser");
 
 			}
 			else {
-				receipt = new Coat();
+				receipt = new Receipt();
+				receipt.setKind("Coat");
 			}
 			
 			receipt.setReceiptID(receiptID);			

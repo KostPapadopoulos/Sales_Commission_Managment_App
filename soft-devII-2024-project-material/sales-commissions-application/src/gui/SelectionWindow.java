@@ -21,11 +21,8 @@ import java.awt.SystemColor;
 import java.awt.Color;
 
 import data.ReceiptManager;
-import data.Coat;
 import data.Receipt;
-import data.Shirt;
-import data.Skirt;
-import data.Trouser;
+
 
 
 public class SelectionWindow extends JDialog {
@@ -488,17 +485,8 @@ public class SelectionWindow extends JDialog {
 	}
 	
 	private void addReceipt(){
-		Receipt receipt = new Receipt();
+		Receipt receipt = new Receipt(kindTextField.toString());
 		
-		
-		if(kindTextField.equals("Shirts"))		
-			receipt= new Shirt();
-		else if (kindTextField.equals("Skirts"))
-			receipt = new Skirt();
-		else if (kindTextField.equals("Trousers"))
-			receipt = new Trouser();
-		else if(kindTextField.equals("Coats"))				
-			receipt = new Coat();
 		try{
 			receipt.setReceiptID(Integer.parseInt(receiptIDTextField.getText()));			
 			receipt.setDate(dateTextField.getText());
