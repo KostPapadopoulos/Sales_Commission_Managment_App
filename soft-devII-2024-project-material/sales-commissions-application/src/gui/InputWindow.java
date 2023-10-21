@@ -213,7 +213,7 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"� ������������ ������� ��� ��� �����");
+				JOptionPane.showMessageDialog(null,"2 : � ������������ ������� ��� ��� �����");
 
 			}
 			else{
@@ -224,10 +224,10 @@ public class InputWindow extends JDialog {
 			
 		}catch (NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"��� ���������� ������ ������");
+			JOptionPane.showMessageDialog(null," 3:��� ���������� ������ ������");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"�������� ������ �������� ���� ��� �������� ��� �������");
+			JOptionPane.showMessageDialog(null,"4 : �������� ������ �������� ���� ��� �������� ��� �������");
 		}
 		
 	}

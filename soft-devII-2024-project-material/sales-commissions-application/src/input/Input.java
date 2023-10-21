@@ -34,7 +34,7 @@ public abstract class Input {
 	
 
 	
-	public void addAgent() {
+	public void addReceiptManager() {
 		receiptManager.setName(name);
 		receiptManager.setAfm(afm);
 	}

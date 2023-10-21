@@ -32,7 +32,7 @@ public class XMLInput extends Input {
 			
         	afm = ((Element) nodeLst.item(0)).getElementsByTagName("AFM").
 			item(0).getChildNodes().item(0).getNodeValue().trim();
-        	addAgent();
+        	addReceiptManager();
         	NodeList receiptsNodeList = ((Element) nodeLst.
 			item(0)).getElementsByTagName("Receipt");
 			
@@ -77,7 +77,7 @@ public class XMLInput extends Input {
             
         } catch (Exception e) {
         	JOptionPane.showMessageDialog
-			(null,"Προέκυψε κάποιο πρόβλημα κατά το διάβασμα του αρχείου");
+			(null,"οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 		} 
     }
     
