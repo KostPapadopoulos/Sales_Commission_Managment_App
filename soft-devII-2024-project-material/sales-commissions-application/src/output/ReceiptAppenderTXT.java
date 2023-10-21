@@ -1,47 +1,48 @@
-package data;
+package output;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileAppenderTXT extends FileAppender{
+public class ReceiptAppenderTXT extends ReceiptAppender{
 
-	public  void setFileToAppend(File fileToAppend) {
-		
-		this.fileToAppend = fileToAppend;
-		
+	private FileWriter fileWriter;
+	
+	@Override
+	public void openFile() throws IOException {
+		this.fileWriter = new FileWriter(fileToAppend,true);		
 	}
 
-	public void appendFile(){
+	@Override
+	public void addReceiptDataToFile(){
 		System.out.println("Mpike sto TXT");
 		System.out.println(fileToAppend.getAbsolutePath());
 
 		try {
 			
-			FileWriter fileWriter = new FileWriter(fileToAppend,true);		
 			fileWriter.write("\n");
 			fileWriter.write("Receipt ID: ");
-			fileWriter.write(receiptID);
+			fileWriter.write(String.valueOf(receipt.getReceiptID()));
 			fileWriter.write("\n");
 
 			fileWriter.write("Date: ");
-			fileWriter.write(date);
+			fileWriter.write(receipt.getDate());
 			fileWriter.write("\n");
 
 			fileWriter.write("Kind: ");
-			fileWriter.write(kind);
+			fileWriter.write(receipt.getKind());
+			System.out.println(receipt.getKind());
 			fileWriter.write("\n");
 
 			fileWriter.write("Sales: ");
-			fileWriter.write(sales);
+			fileWriter.write(String.valueOf((int) receipt.getSales()));
 			fileWriter.write("\n");
 
 			fileWriter.write("Items: ");
-			fileWriter.write(items);
+			fileWriter.write(String.valueOf((int)receipt.getItems()));
 			fileWriter.write("\n");
 
 			fileWriter.write("Company: ");
-			fileWriter.write(company);
+			fileWriter.write(receipt.getCompany().getName());
 			fileWriter.write("\n");
 
 
@@ -61,45 +62,17 @@ public class FileAppenderTXT extends FileAppender{
 			fileWriter.write(number);
 			fileWriter.write("\n");
 
-			fileWriter.close();
-		
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
 	}
-	
-	public void setReceiptID(String receiptID) {
-		this.receiptID = receiptID;
+
+	@Override
+	public void closeFile() throws IOException {
+		this.fileWriter.close();
+
 	}
-
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-
-
-
-	public void setSales(String sales) {
-		this.sales = sales;
-	}
-
-
-
-	public void setItems(String items) {
-		this.items = items;
-	}
-
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
 
 	public void setCountry(String country) {
 		this.country = country;
