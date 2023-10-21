@@ -204,7 +204,7 @@ public class InputWindow extends JDialog {
 			inputFileTXT.readFile();
 			receiptManager = inputFileTXT.getReceiptManager();
 			receiptManager.setFileType("TXT");
-			receiptManager.getFileAppender().setFileToAppend(recieptFileTXT);				
+			receiptManager.getReceiptAppender().setFileToAppend(recieptFileTXT);				
 			allAgents.add(receiptManager);
 			for(int i = 0; i< listModel.getSize(); i++){
 				if(receiptManager.getName().equals(listModel.getElementAt(i))){
@@ -244,7 +244,7 @@ public class InputWindow extends JDialog {
 			inputFileXML.readFile();
 			receiptManager = inputFileXML.getReceiptManager();
 			receiptManager.setFileType("XML");
-			receiptManager.getFileAppender().setFileToAppend(recieptFileXML);				
+			receiptManager.getReceiptAppender().setFileToAppend(recieptFileXML);				
 			allAgents.add(receiptManager);
 			for(int i = 0; i< listModel.getSize(); i++){
 				if(receiptManager.getName().equals(listModel.getElementAt(i))){

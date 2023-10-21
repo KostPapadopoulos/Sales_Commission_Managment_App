@@ -3,11 +3,15 @@ package data;
 
 import java.util.ArrayList;
 
+import output.ReceiptAppender;
+import output.ReceiptAppenderTXT;
+import output.ReceiptAppenderXML;
+
 public class ReceiptManager {
 	private String name;
 	private String afm;
 	private ArrayList<Receipt> allReceipts;
-	private FileAppender fileAppender;
+	private ReceiptAppender fileAppender;
 	private boolean res = false;
 	
 	private final double LOWER_SALES_THRESHOLD = 6000;
@@ -25,10 +29,10 @@ public class ReceiptManager {
 	
 	public void setFileType(String fileType) {
 		if(fileType.equals("TXT")){
-			fileAppender = new FileAppenderTXT();
+			fileAppender = new ReceiptAppenderTXT();
 		}	
 		else{
-			fileAppender = new FileAppenderXML();
+			fileAppender = new ReceiptAppenderXML();
 		}	
 	}
 	public ArrayList<Receipt> getReceipts(){
@@ -122,7 +126,7 @@ public class ReceiptManager {
 	}
 
 
-	public FileAppender getFileAppender() {
+	public ReceiptAppender getReceiptAppender() {
 		return fileAppender;
 	}
 

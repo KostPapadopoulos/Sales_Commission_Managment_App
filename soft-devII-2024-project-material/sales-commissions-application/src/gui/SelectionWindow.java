@@ -62,6 +62,7 @@ public class SelectionWindow extends JDialog {
 	private ReceiptManager selectedReceiptManager;
 	@SuppressWarnings("unused")
 	private String fileType;
+	private Receipt receipt;
 	
 	public SelectionWindow(InputWindow dialog, ReceiptManager receiptManager, String fileTypeFlag) {
 		inputDialog = dialog;
@@ -404,22 +405,22 @@ public class SelectionWindow extends JDialog {
 			totalItems = -1;
 		
 		if(shirtRadio.isSelected())
-			shirtSales = selectedReceiptManager.calculateSalesByKind("Shirt");
+			shirtSales = selectedReceiptManager.calculateSalesByKind("Shirts");
 		else
 			shirtSales = -1;
 		
 		if(skirtRadio.isSelected()  )
-			skirtSales = selectedReceiptManager.calculateSalesByKind("Skirt");
+			skirtSales = selectedReceiptManager.calculateSalesByKind("Skirts");
 		else 
 			skirtSales = -1;
 		
 		if(coatRadio.isSelected())
-			coatsSales = selectedReceiptManager.calculateSalesByKind("Coat");
+			coatsSales = selectedReceiptManager.calculateSalesByKind("Coats");
 		else 
 			coatsSales = -1;
 		
 		if(trousersRadio.isSelected())
-			trousersSales = selectedReceiptManager.calculateSalesByKind("Trouser");
+			trousersSales = selectedReceiptManager.calculateSalesByKind("Trousers");
 		else 
 			trousersSales = -1;
 		
@@ -470,26 +471,30 @@ public class SelectionWindow extends JDialog {
 
 	}
 
-	private void appendFile(){
+	private void appendFile() {
+		/* 
 		selectedReceiptManager.getFileAppender().setReceiptID(receiptIDTextField.getText());
 		selectedReceiptManager.getFileAppender().setDate(dateTextField.getText());
 		selectedReceiptManager.getFileAppender().setKind(kindTextField.getText());
 		selectedReceiptManager.getFileAppender().setSales(salesTextField.getText());
 		selectedReceiptManager.getFileAppender().setItems(itemsTextField.getText());
 		selectedReceiptManager.getFileAppender().setCompany(companyTextField.getText());
-		selectedReceiptManager.getFileAppender().setCountry(countryTextField.getText());
-		selectedReceiptManager.getFileAppender().setCity(cityTextField.getText());
-		selectedReceiptManager.getFileAppender().setStreet(streetTextField.getText());
-		selectedReceiptManager.getFileAppender().setNumber(numberTextField.getText());
-		selectedReceiptManager.getFileAppender().appendFile();
+		*/
+		selectedReceiptManager.getReceiptAppender().setReceipt(this.receipt);
+		selectedReceiptManager.getReceiptAppender().setCountry(countryTextField.getText());
+		selectedReceiptManager.getReceiptAppender().setCity(cityTextField.getText());
+		selectedReceiptManager.getReceiptAppender().setStreet(streetTextField.getText());
+		selectedReceiptManager.getReceiptAppender().setNumber(numberTextField.getText());
+		selectedReceiptManager.getReceiptAppender().appendFile();
 	}
 	
 	private void addReceipt(){
-		Receipt receipt = new Receipt(kindTextField.toString());
+		this.receipt = new Receipt(kindTextField.toString());
 		
 		try{
-			receipt.setReceiptID(Integer.parseInt(receiptIDTextField.getText()));			
+			receipt.setReceiptID(Integer.parseInt(receiptIDTextField.getText()));
 			receipt.setDate(dateTextField.getText());
+			receipt.setKind(kindTextField.getText());
 			receipt.setSales(Double.parseDouble(salesTextField.getText()));
 			receipt.setItems(Integer.parseInt(itemsTextField.getText()));
 			receipt.getCompany().setName(companyTextField.getText());
@@ -500,7 +505,7 @@ public class SelectionWindow extends JDialog {
 			selectedReceiptManager.getReceipts().add(receipt);
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
-			JOptionPane.showMessageDialog(null,"� �������� ���������� ��������");
+			JOptionPane.showMessageDialog(null,"1: � �������� ���������� ��������");
 
 		}catch (NumberFormatException e){
 			JOptionPane.showMessageDialog(null,"��� ������������ ����� ������ �����, ����������� ����");
