@@ -7,7 +7,7 @@ import output.ReceiptAppender;
 import output.ReceiptAppenderTXT;
 import output.ReceiptAppenderXML;
 
-public class ReceiptManager {
+public class SalesRepresentativeManager {
 	private String name;
 	private String afm;
 	private ArrayList<Receipt> allReceipts;
@@ -23,7 +23,7 @@ public class ReceiptManager {
 
 	
 	
-	public ReceiptManager(){
+	public SalesRepresentativeManager(){
 		allReceipts = new ArrayList<Receipt>();
 	}
 	
@@ -74,6 +74,7 @@ public class ReceiptManager {
 	public float calculateSalesByKind(String kind) {
         float sum = 0;
         for (Receipt receipt : allReceipts) {
+			System.out.println(receipt.getKind());
             if (receipt.getKind().equals(kind)) {
                 sum += receipt.getItems();
             }

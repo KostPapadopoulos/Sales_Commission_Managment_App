@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
 
-import data.ReceiptManager;
+import data.SalesRepresentativeManager;
 import data.Receipt;
 
 
@@ -59,14 +59,14 @@ public class SelectionWindow extends JDialog {
 	private float trousersSales;
 	private double commission;
 	private InputWindow inputDialog;
-	private ReceiptManager selectedReceiptManager;
+	private SalesRepresentativeManager selectedSalesRepresentantiveManager;
 	@SuppressWarnings("unused")
 	private String fileType;
 	private Receipt receipt;
 	
-	public SelectionWindow(InputWindow dialog, ReceiptManager receiptManager, String fileTypeFlag) {
+	public SelectionWindow(InputWindow dialog, SalesRepresentativeManager receiptManager, String fileTypeFlag) {
 		inputDialog = dialog;
-		selectedReceiptManager = receiptManager;
+		selectedSalesRepresentantiveManager = receiptManager;
 		fileType = fileTypeFlag;
 		initialise();
 		
@@ -381,7 +381,7 @@ public class SelectionWindow extends JDialog {
 		});
 		
 		try{
-			agentNameTextField.setText(selectedReceiptManager.getName());
+			agentNameTextField.setText(selectedSalesRepresentantiveManager.getName());
 		}catch(NullPointerException e){
 			
 			JOptionPane.showMessageDialog(null,"�������� ������ ��������, ����������� ����");
@@ -395,42 +395,42 @@ public class SelectionWindow extends JDialog {
 	
 	protected void okButtonPressed(ActionEvent evt) {
 		if(totalSalesCheckBox.isSelected())
-			 totalSales = selectedReceiptManager.calculateTotalSales();
+			 totalSales = selectedSalesRepresentantiveManager.calculateTotalSales();
 		else
 			totalSales = -1;
 		
 		if(totalItemsCheckBox.isSelected())
-			totalItems = selectedReceiptManager.calculateTotalItems();
+			totalItems = selectedSalesRepresentantiveManager.calculateTotalItems();
 		else
 			totalItems = -1;
 		
 		if(shirtRadio.isSelected()){
-			shirtSales = selectedReceiptManager.calculateSalesByKind("Shirt");
+			shirtSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Shirt");
 			System.out.println(shirtSales);
 		}
 		else
 			shirtSales = -1;
 		
 		if(skirtRadio.isSelected()  )
-			skirtSales = selectedReceiptManager.calculateSalesByKind("Skirt");
+			skirtSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Skirt");
 		else 
 			skirtSales = -1;
 		
 		if(coatRadio.isSelected())
-			coatsSales = selectedReceiptManager.calculateSalesByKind("Coat");
+			coatsSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Coat");
 		else 
 			coatsSales = -1;
 		
 		if(trousersRadio.isSelected())
-			trousersSales = selectedReceiptManager.calculateSalesByKind("Trouser");
+			trousersSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Trouser");
 		else 
 			trousersSales = -1;
 		
 		if(commissionCheckBox.isSelected())
-			commission = selectedReceiptManager.calculateCommission();
+			commission = selectedSalesRepresentantiveManager.calculateCommission();
 		else
 			commission = -1;
-		ResultWindow rs = new ResultWindow(this,selectedReceiptManager, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
+		ResultWindow rs = new ResultWindow(this,selectedSalesRepresentantiveManager, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
 		rs.setVisible(true);
 		this.setVisible(false);		
 	}
@@ -475,19 +475,19 @@ public class SelectionWindow extends JDialog {
 
 	private void appendFile() {
 		/* 
-		selectedReceiptManager.getFileAppender().setReceiptID(receiptIDTextField.getText());
-		selectedReceiptManager.getFileAppender().setDate(dateTextField.getText());
-		selectedReceiptManager.getFileAppender().setKind(kindTextField.getText());
-		selectedReceiptManager.getFileAppender().setSales(salesTextField.getText());
-		selectedReceiptManager.getFileAppender().setItems(itemsTextField.getText());
-		selectedReceiptManager.getFileAppender().setCompany(companyTextField.getText());
+		selectedSalesRepresentantiveManager.getFileAppender().setReceiptID(receiptIDTextField.getText());
+		selectedSalesRepresentantiveManager.getFileAppender().setDate(dateTextField.getText());
+		selectedSalesRepresentantiveManager.getFileAppender().setKind(kindTextField.getText());
+		selectedSalesRepresentantiveManager.getFileAppender().setSales(salesTextField.getText());
+		selectedSalesRepresentantiveManager.getFileAppender().setItems(itemsTextField.getText());
+		selectedSalesRepresentantiveManager.getFileAppender().setCompany(companyTextField.getText());
 		*/
-		selectedReceiptManager.getReceiptAppender().setReceipt(this.receipt);
-		selectedReceiptManager.getReceiptAppender().setCountry(countryTextField.getText());
-		selectedReceiptManager.getReceiptAppender().setCity(cityTextField.getText());
-		selectedReceiptManager.getReceiptAppender().setStreet(streetTextField.getText());
-		selectedReceiptManager.getReceiptAppender().setNumber(numberTextField.getText());
-		selectedReceiptManager.getReceiptAppender().appendFile();
+		selectedSalesRepresentantiveManager.getReceiptAppender().setReceipt(this.receipt);
+		selectedSalesRepresentantiveManager.getReceiptAppender().setCountry(countryTextField.getText());
+		selectedSalesRepresentantiveManager.getReceiptAppender().setCity(cityTextField.getText());
+		selectedSalesRepresentantiveManager.getReceiptAppender().setStreet(streetTextField.getText());
+		selectedSalesRepresentantiveManager.getReceiptAppender().setNumber(numberTextField.getText());
+		selectedSalesRepresentantiveManager.getReceiptAppender().appendFile();
 	}
 	
 	private void addReceipt(){
@@ -504,7 +504,7 @@ public class SelectionWindow extends JDialog {
 			receipt.getCompany().getCompanyAddress().setCity(cityTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreet(streetTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreetNumber(Integer.parseInt(numberTextField.getText()));
-			selectedReceiptManager.getReceipts().add(receipt);
+			selectedSalesRepresentantiveManager.getReceipts().add(receipt);
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
 			JOptionPane.showMessageDialog(null,"1: � �������� ���������� ��������");

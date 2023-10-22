@@ -29,7 +29,7 @@ import java.awt.SystemColor;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import data.ReceiptManager;
+import data.SalesRepresentativeManager;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -41,9 +41,9 @@ public class InputWindow extends JDialog {
 	private final JPanel inputWindowPanel = new JPanel();
 	private DefaultListModel <String> listModel = new DefaultListModel <String>();
 	private JList <String> agentsList = new JList <String>();
-	private Vector <ReceiptManager> allAgents;
-	private  ReceiptManager receiptManager = new ReceiptManager();
-	private ReceiptManager selectedrReceiptManager = null;
+	private Vector <SalesRepresentativeManager> allAgents;
+	private  SalesRepresentativeManager receiptManager = new SalesRepresentativeManager();
+	private SalesRepresentativeManager selectedrSalesRepresentativetManager = null;
 	static InputWindow dialog = new InputWindow();
 	@SuppressWarnings("unused")
 	private File inputFile;
@@ -71,7 +71,7 @@ public class InputWindow extends JDialog {
 	}
 	
 	public void initialise() {
-		allAgents = new Vector <ReceiptManager>();
+		allAgents = new Vector <SalesRepresentativeManager>();
 		
 		setBackground(new Color(0, 0, 0));
 		setBounds(100, 100, 736, 472);
@@ -213,7 +213,7 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"2 : � ������������ ������� ��� ��� �����");
+				JOptionPane.showMessageDialog(null,"The selected Sales Representative's file is already loaded!");
 
 			}
 			else{
@@ -227,7 +227,8 @@ public class InputWindow extends JDialog {
 			JOptionPane.showMessageDialog(null," 3:��� ���������� ������ ������");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"4 : �������� ������ �������� ���� ��� �������� ��� �������");
+			JOptionPane.showMessageDialog(null,"The TXT file you're trying to load has a problem with the Receipt format! " + 
+			"Please check your file and try again");
 		}
 		
 	}
@@ -253,7 +254,7 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"� ������������ ������� ��� ��� �����");
+				JOptionPane.showMessageDialog(null,"The selected Sales Representative's file is already loaded!");
 
 			}
 			else{
@@ -263,7 +264,8 @@ public class InputWindow extends JDialog {
 			}
 		}catch (IllegalArgumentException e){
 		
-			JOptionPane.showMessageDialog(null,"��� ���������� ������ ������");
+			JOptionPane.showMessageDialog(null,"The XML file you're trying to load has an illegal XML argument. " + 
+			"Please check your file and try again");
 
 		}
         
@@ -280,7 +282,7 @@ public class InputWindow extends JDialog {
             for(int i=0; i<allAgents.size(); i++){
                 if(agentName.equals(allAgents.get(i).getName())){
                 	
-                		selectedrReceiptManager = allAgents.get(i);
+                		selectedrSalesRepresentativetManager = allAgents.get(i);
                 		break;
                 		
                 }
@@ -291,11 +293,11 @@ public class InputWindow extends JDialog {
 	
 	private void okButtonPressed(ActionEvent evt) {
 		if(agentsList.isSelectionEmpty()){
-			JOptionPane.showMessageDialog(null,"��� ����� �������� �����������");
+			JOptionPane.showMessageDialog(null,"You haven't selected any Sales Representative's profile!");
 
 		}
 		else{
-			SelectionWindow sw = new SelectionWindow(dialog,selectedrReceiptManager,fileTypeFlag);
+			SelectionWindow sw = new SelectionWindow(dialog,selectedrSalesRepresentativetManager,fileTypeFlag);
 			this.setVisible(false);
 			sw.setVisible(true);
 		}	
