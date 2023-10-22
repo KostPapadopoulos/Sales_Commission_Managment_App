@@ -51,7 +51,7 @@ public abstract class Input {
 			}
 			else if (kind.equals("Skirts")) {
 				receipt = new Receipt();
-				receipt.setKind("Shirt");
+				receipt.setKind("Skirt");
 
 			}
 			else if (kind.equals("Trousers")) {

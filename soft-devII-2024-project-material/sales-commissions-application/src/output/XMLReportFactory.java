@@ -19,7 +19,7 @@ import data.SalesRepManager;
 
 public class XMLReportFactory extends ReportFactory{
 	
-	private String fullPathName ;
+	//private String fullPathName ;
 	private DocumentBuilderFactory documentFactory;
 	private DocumentBuilder documentBuilder;
 	private Document document;	
@@ -30,8 +30,8 @@ public class XMLReportFactory extends ReportFactory{
 	}	
 
 	@Override
-	public void createFile() {
-		fullPathName =  "\\\\C:\\\\Users\\\\papat\\\\Desktop\\\\Sales_Commission_Managment_App\\\\soft-devII-2024-project-material\\\\Reports\\\\" + receiptManager.getAfm() + "_SALES.xml";
+	public void createFile(File file) {
+		//fullPathName =  "\\\\C:\\\\Users\\\\papat\\\\Desktop\\\\Sales_Commission_Managment_App\\\\soft-devII-2024-project-material\\\\Reports\\\\" + receiptManager.getAfm() + "_SALES.xml";
         try {
 			documentFactory = DocumentBuilderFactory.newInstance();
 			documentBuilder = documentFactory.newDocumentBuilder();
@@ -89,7 +89,7 @@ public class XMLReportFactory extends ReportFactory{
 	}
 
 	@Override
-	public void closeFile() {
+	public void closeFile(File file) {
 		try {
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -97,7 +97,7 @@ public class XMLReportFactory extends ReportFactory{
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File(fullPathName));
+			StreamResult streamResult = new StreamResult(file);
 			transformer.transform(domSource, streamResult);
 
 		} catch (TransformerException e) {

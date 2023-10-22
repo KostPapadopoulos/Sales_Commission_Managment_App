@@ -74,7 +74,6 @@ public class SalesRepManager {
 	public float calculateSalesByKind(String kind) {
         float sum = 0;
         for (Receipt receipt : allReceipts) {
-			System.out.println(receipt.getKind());
             if (receipt.getKind().equals(kind)) {
                 sum += receipt.getItems();
             }

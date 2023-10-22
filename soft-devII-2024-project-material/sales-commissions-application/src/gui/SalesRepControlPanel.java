@@ -21,6 +21,7 @@ import java.awt.SystemColor;
 import java.awt.Color;
 
 import data.SalesRepManager;
+import output.ReceiptAppender;
 import data.Receipt;
 
 
@@ -391,58 +392,83 @@ public class SalesRepControlPanel extends JDialog {
 		
 	}
 	
-	
-	
-	protected void okButtonPressed(ActionEvent evt) {
+	public void updateTotalSales() {
 		if(totalSalesCheckBox.isSelected())
 			 totalSales = selectedSalesRepresentantiveManager.calculateTotalSales();
 		else
 			totalSales = -1;
-		
+	}
+	
+	public void updateTotalItems() {
 		if(totalItemsCheckBox.isSelected())
 			totalItems = selectedSalesRepresentantiveManager.calculateTotalItems();
 		else
-			totalItems = -1;
-		
+			totalItems = -1;	
+	}
+	
+	public void updateShirtSales() {
 		if(shirtRadio.isSelected()){
 			shirtSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Shirt");
-			System.out.println(shirtSales);
 		}
 		else
 			shirtSales = -1;
-		
+	}
+	
+	public void updateSkirtSales() {
 		if(skirtRadio.isSelected()  )
 			skirtSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Skirt");
 		else 
 			skirtSales = -1;
-		
+	}
+	
+	public void updateCoatSales() {
 		if(coatRadio.isSelected())
 			coatsSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Coat");
 		else 
 			coatsSales = -1;
-		
+	}
+	public void updateTrouserSales() {
 		if(trousersRadio.isSelected())
 			trousersSales = selectedSalesRepresentantiveManager.calculateSalesByKind("Trouser");
 		else 
 			trousersSales = -1;
-		
+	}
+	
+	public void updateCommission() {
 		if(commissionCheckBox.isSelected())
 			commission = selectedSalesRepresentantiveManager.calculateCommission();
 		else
 			commission = -1;
+	}
+	
+	protected void okButtonPressed(ActionEvent evt) {
+		updateTotalSales();
+		updateTotalItems();
+		updateShirtSales();
+		updateSkirtSales();
+		updateCoatSales();
+		updateTrouserSales();
+		updateCommission();
+		
 		SalesResultExportWindow rs = new SalesResultExportWindow(this,selectedSalesRepresentantiveManager, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
 		rs.setVisible(true);
 		this.setVisible(false);		
 	}
 	
-	
-	private void addReceiptButtonPressed(ActionEvent evt) {
+	public boolean areAllReceiptFieldsEmpty() {
 		if(receiptIDTextField.getText().isEmpty() && dateTextField.getText().isEmpty() 
 				&& kindTextField.getText().isEmpty() && salesTextField.getText().isEmpty()
 				&& itemsTextField.getText().isEmpty() && companyTextField.getText().isEmpty()
 				&& countryTextField.getText().isEmpty() && cityTextField.getText().isEmpty()
 				&& streetTextField.getText().isEmpty() && numberTextField.getText().isEmpty()){
-			JOptionPane.showMessageDialog(null,"������ �� ������������ ��� �� �����");
+			return true;
+		}
+		return false;
+	}
+	
+	private void addReceiptButtonPressed(ActionEvent evt) {
+		if(areAllReceiptFieldsEmpty()){
+			JOptionPane.showMessageDialog(null,"All new Receipt are empty!");
 			
 		}
 		/*else if(kindTextField.toString().equalsIgnoreCase("Coats") == false && 
@@ -482,12 +508,14 @@ public class SalesRepControlPanel extends JDialog {
 		selectedSalesRepresentantiveManager.getFileAppender().setItems(itemsTextField.getText());
 		selectedSalesRepresentantiveManager.getFileAppender().setCompany(companyTextField.getText());
 		*/
-		selectedSalesRepresentantiveManager.getReceiptAppender().setReceipt(this.receipt);
-		selectedSalesRepresentantiveManager.getReceiptAppender().setCountry(countryTextField.getText());
-		selectedSalesRepresentantiveManager.getReceiptAppender().setCity(cityTextField.getText());
-		selectedSalesRepresentantiveManager.getReceiptAppender().setStreet(streetTextField.getText());
-		selectedSalesRepresentantiveManager.getReceiptAppender().setNumber(numberTextField.getText());
-		selectedSalesRepresentantiveManager.getReceiptAppender().appendFile();
+		ReceiptAppender receiptAppender = selectedSalesRepresentantiveManager.getReceiptAppender(); 
+		receiptAppender.setReceipt(this.receipt);
+		
+		receiptAppender.setCountry(countryTextField.getText());
+		receiptAppender.setCity(cityTextField.getText());
+		receiptAppender.setStreet(streetTextField.getText());
+		receiptAppender.setNumber(numberTextField.getText());
+		receiptAppender.appendFile();
 	}
 	
 	private void addReceipt(){

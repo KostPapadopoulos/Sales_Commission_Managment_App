@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -21,6 +22,7 @@ import data.SalesRepManager;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class SalesResultExportWindow extends JDialog {
@@ -43,6 +45,8 @@ public class SalesResultExportWindow extends JDialog {
 	private float trousersSales;
 	private float coatsSales;
 	private double commission;
+	private File fileToSave;    
+
 
 
 	public SalesResultExportWindow(final SalesRepControlPanel sw, SalesRepManager receiptManager,double tSales,int tItems,
@@ -233,15 +237,30 @@ public class SalesResultExportWindow extends JDialog {
 				
 	}
 	private void outputTXTButtonPressed(ActionEvent evt) {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");
+		int userSelection = fileChooser.showSaveDialog(this);
+		    
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			fileToSave = fileChooser.getSelectedFile();
+		}
 		TXTReportFactory makeTXTFile = new TXTReportFactory(selectedSalesRepManager);
-		makeTXTFile.saveFile();
+		makeTXTFile.saveFile(fileToSave);
 		JOptionPane.showMessageDialog(null,"TXT Sales Report Created successfully!");
 
 		
 	}
 	private void outputXMLButtonPressed(ActionEvent evt) {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");
+		    
+		int userSelection = fileChooser.showSaveDialog(this);
+		    
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			fileToSave = fileChooser.getSelectedFile();
+		}
 		XMLReportFactory makeXMLFile = new XMLReportFactory(selectedSalesRepManager);
-		makeXMLFile.saveFile();
+		makeXMLFile.saveFile(fileToSave);
 		JOptionPane.showMessageDialog(null,"XML Sales Report Created successfully!");		
 	}
 	private void okButtonPressed(ActionEvent evt) {

@@ -31,18 +31,18 @@ public class XMLInput extends Input {
 			= DocumentBuilderFactory.newInstance();
         	
 			try {
-				docBuilder = docBuilderFactory.newDocumentBuilder();
+				this.docBuilder = docBuilderFactory.newDocumentBuilder();
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
 			}
 			try {
-				doc = docBuilder.parse(inputFile);
+				this.doc = docBuilder.parse(inputFile);
 			} catch (SAXException | IOException e) {
 				e.printStackTrace();
 			}
         	 
         	doc.getDocumentElement().normalize();
-            nodeLst = doc.getElementsByTagName("Agent");
+            nodeLst = this.doc.getElementsByTagName("Agent");
 			readReceiptDataFromFile();
 			// Xrhsimopoihsame try with opote otan teleiwnei h open kleinei ton BufferReader kai etsi den mporei na ton xrhsimopoihsei h readReceiptDataFromFile
 
@@ -70,6 +70,8 @@ public class XMLInput extends Input {
             	kind = ((Element) receiptsNodeList.item(i))
 				.getElementsByTagName("Kind").item(0).getChildNodes().item(0).getNodeValue().trim();
 				
+            	System.out.println(kind);
+            	
             	sales = Double.parseDouble(((Element) receiptsNodeList.item(i)).
 				getElementsByTagName("Sales").item(0).getChildNodes().item(0).getNodeValue().trim());
             	
