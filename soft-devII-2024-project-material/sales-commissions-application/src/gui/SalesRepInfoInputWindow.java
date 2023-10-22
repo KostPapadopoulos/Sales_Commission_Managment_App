@@ -15,7 +15,7 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.awt.Color;
 
 import javax.swing.GroupLayout;
@@ -29,22 +29,22 @@ import java.awt.SystemColor;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import data.SalesRepresentativeManager;
+import data.SalesRepManager;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class InputWindow extends JDialog {
+public class SalesRepInfoInputWindow extends JDialog {
 
 	
 	private static final long serialVersionUID = 1L;
 	private final JPanel inputWindowPanel = new JPanel();
 	private DefaultListModel <String> listModel = new DefaultListModel <String>();
-	private JList <String> agentsList = new JList <String>();
-	private Vector <SalesRepresentativeManager> allAgents;
-	private  SalesRepresentativeManager receiptManager = new SalesRepresentativeManager();
-	private SalesRepresentativeManager selectedrSalesRepresentativetManager = null;
-	static InputWindow dialog = new InputWindow();
+	private JList <String> salesRepresentativeList = new JList <String>();
+	private ArrayList <SalesRepManager> allSalesRepresentatives;
+	private  SalesRepManager salesRepManager = new SalesRepManager();
+	private SalesRepManager selectedrSalesRepresentativetManager = null;
+	static SalesRepInfoInputWindow dialog = new SalesRepInfoInputWindow();
 	@SuppressWarnings("unused")
 	private File inputFile;
 	private String fileTypeFlag;
@@ -65,13 +65,13 @@ public class InputWindow extends JDialog {
 		}
 	}
 
-	public InputWindow(){
+	public SalesRepInfoInputWindow(){
 		
 		initialise();
 	}
 	
 	public void initialise() {
-		allAgents = new Vector <SalesRepresentativeManager>();
+		allSalesRepresentatives = new ArrayList <SalesRepManager>();
 		
 		setBackground(new Color(0, 0, 0));
 		setBounds(100, 100, 736, 472);
@@ -94,16 +94,16 @@ public class InputWindow extends JDialog {
 				
 				JLabel label = new JLabel("\u0395\u03C0\u03B9\u03BB\u03AD\u03BE\u03C4\u03B5 \u03B5\u03AF\u03B4\u03BF\u03C2 \u03B1\u03C1\u03C7\u03B5\u03AF\u03BF\u03C5 \u03B3\u03B9\u03B1 \u03C6\u03CC\u03C1\u03C4\u03C9\u03C3\u03B7 \u03B1\u03C0\u03BF\u03B4\u03B5\u03AF\u03BE\u03B5\u03C9\u03BD:");
 				label.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-				agentsList.addMouseListener(new MouseAdapter() {
+				salesRepresentativeList.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						selectAgent(e);
+						selectSalesRepresentative(e);
 					}
 				});
 				
-				agentsList.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				agentsList.setBackground(UIManager.getColor("Button.light"));
-				agentsList.setBorder(new LineBorder(new Color(0, 0, 0)));
+				salesRepresentativeList.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				salesRepresentativeList.setBackground(UIManager.getColor("Button.light"));
+				salesRepresentativeList.setBorder(new LineBorder(new Color(0, 0, 0)));
 				
 				
 				JLabel label_1 = new JLabel("\u039B\u03B9\u03C3\u03C4\u03B1 \u0391\u03BD\u03C4\u03B9\u03C0\u03C1\u03BF\u03C3\u03CE\u03C0\u03C9\u03BD");
@@ -144,7 +144,7 @@ public class InputWindow extends JDialog {
 									.addComponent(buttonXMLInput, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 							.addGap(18)
 							.addGroup(gl_inputWindowPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(agentsList, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
+								.addComponent(salesRepresentativeList, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
 								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap(57, Short.MAX_VALUE))
 						.addGroup(Alignment.TRAILING, gl_inputWindowPanel.createSequentialGroup()
@@ -165,7 +165,7 @@ public class InputWindow extends JDialog {
 									.addComponent(buttonTXTInput, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 									.addGap(42)
 									.addComponent(buttonXMLInput, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-								.addComponent(agentsList, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
+								.addComponent(salesRepresentativeList, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
 							.addGap(139)
 							.addGroup(gl_inputWindowPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
@@ -202,12 +202,12 @@ public class InputWindow extends JDialog {
 			File recieptFileTXT = TXTFileChooser.getSelectedFile();
 			TXTInput inputFileTXT = new TXTInput(recieptFileTXT);	
 			inputFileTXT.readFile();
-			receiptManager = inputFileTXT.getReceiptManager();
-			receiptManager.setFileType("TXT");
-			receiptManager.getReceiptAppender().setFileToAppend(recieptFileTXT);				
-			allAgents.add(receiptManager);
+			salesRepManager = inputFileTXT.getReceiptManager();
+			salesRepManager.setFileType("TXT");
+			salesRepManager.getReceiptAppender().setFileToAppend(recieptFileTXT);				
+			allSalesRepresentatives.add(salesRepManager);
 			for(int i = 0; i< listModel.getSize(); i++){
-				if(receiptManager.getName().equals(listModel.getElementAt(i))){
+				if(salesRepManager.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
 
 				}
@@ -217,8 +217,8 @@ public class InputWindow extends JDialog {
 
 			}
 			else{
-				listModel.addElement(receiptManager.getName());
-				agentsList.setModel(listModel);
+				listModel.addElement(salesRepManager.getName());
+				salesRepresentativeList.setModel(listModel);
 				fileTypeFlag = "TXT";
 			}
 			
@@ -243,12 +243,12 @@ public class InputWindow extends JDialog {
 			File recieptFileXML = XMLFileChooser.getSelectedFile();
 			XMLInput inputFileXML = new XMLInput(recieptFileXML);	
 			inputFileXML.readFile();
-			receiptManager = inputFileXML.getReceiptManager();
-			receiptManager.setFileType("XML");
-			receiptManager.getReceiptAppender().setFileToAppend(recieptFileXML);				
-			allAgents.add(receiptManager);
+			salesRepManager = inputFileXML.getReceiptManager();
+			salesRepManager.setFileType("XML");
+			salesRepManager.getReceiptAppender().setFileToAppend(recieptFileXML);				
+			allSalesRepresentatives.add(salesRepManager);
 			for(int i = 0; i< listModel.getSize(); i++){
-				if(receiptManager.getName().equals(listModel.getElementAt(i))){
+				if(salesRepManager.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
 
 				}
@@ -258,8 +258,8 @@ public class InputWindow extends JDialog {
 
 			}
 			else{
-				listModel.addElement(receiptManager.getName());
-				agentsList.setModel(listModel);
+				listModel.addElement(salesRepManager.getName());
+				salesRepresentativeList.setModel(listModel);
 				fileTypeFlag = "XML";
 			}
 		}catch (IllegalArgumentException e){
@@ -273,16 +273,16 @@ public class InputWindow extends JDialog {
 	}
 	
 	
-	private void selectAgent(MouseEvent e){
+	private void selectSalesRepresentative(MouseEvent e){
 		
-		String agentName;
-        if(agentsList.getSelectedIndex()>=0){
+		String salesRepresentativeName;
+        if(salesRepresentativeList.getSelectedIndex()>=0){
         	
-            agentName = agentsList.getSelectedValue().toString();
-            for(int i=0; i<allAgents.size(); i++){
-                if(agentName.equals(allAgents.get(i).getName())){
+        	salesRepresentativeName = salesRepresentativeList.getSelectedValue().toString();
+            for(int i=0; i<allSalesRepresentatives.size(); i++){
+                if(salesRepresentativeName.equals(allSalesRepresentatives.get(i).getName())){
                 	
-                		selectedrSalesRepresentativetManager = allAgents.get(i);
+                		selectedrSalesRepresentativetManager = allSalesRepresentatives.get(i);
                 		break;
                 		
                 }
@@ -292,12 +292,12 @@ public class InputWindow extends JDialog {
 	}
 	
 	private void okButtonPressed(ActionEvent evt) {
-		if(agentsList.isSelectionEmpty()){
+		if(salesRepresentativeList.isSelectionEmpty()){
 			JOptionPane.showMessageDialog(null,"You haven't selected any Sales Representative's profile!");
 
 		}
 		else{
-			SelectionWindow sw = new SelectionWindow(dialog,selectedrSalesRepresentativetManager,fileTypeFlag);
+			SalesRepControlPanel sw = new SalesRepControlPanel(dialog,selectedrSalesRepresentativetManager,fileTypeFlag);
 			this.setVisible(false);
 			sw.setVisible(true);
 		}	

@@ -20,12 +20,12 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
 
-import data.SalesRepresentativeManager;
+import data.SalesRepManager;
 import data.Receipt;
 
 
 
-public class SelectionWindow extends JDialog {
+public class SalesRepControlPanel extends JDialog {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -58,13 +58,13 @@ public class SelectionWindow extends JDialog {
 	private float coatsSales;
 	private float trousersSales;
 	private double commission;
-	private InputWindow inputDialog;
-	private SalesRepresentativeManager selectedSalesRepresentantiveManager;
+	private SalesRepInfoInputWindow inputDialog;
+	private SalesRepManager selectedSalesRepresentantiveManager;
 	@SuppressWarnings("unused")
 	private String fileType;
 	private Receipt receipt;
 	
-	public SelectionWindow(InputWindow dialog, SalesRepresentativeManager receiptManager, String fileTypeFlag) {
+	public SalesRepControlPanel(SalesRepInfoInputWindow dialog, SalesRepManager receiptManager, String fileTypeFlag) {
 		inputDialog = dialog;
 		selectedSalesRepresentantiveManager = receiptManager;
 		fileType = fileTypeFlag;
@@ -430,7 +430,7 @@ public class SelectionWindow extends JDialog {
 			commission = selectedSalesRepresentantiveManager.calculateCommission();
 		else
 			commission = -1;
-		ResultWindow rs = new ResultWindow(this,selectedSalesRepresentantiveManager, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
+		SalesResultExportWindow rs = new SalesResultExportWindow(this,selectedSalesRepresentantiveManager, totalSales, totalItems, shirtSales, skirtSales, trousersSales, coatsSales, commission);
 		rs.setVisible(true);
 		this.setVisible(false);		
 	}

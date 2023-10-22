@@ -7,7 +7,7 @@ import output.ReceiptAppender;
 import output.ReceiptAppenderTXT;
 import output.ReceiptAppenderXML;
 
-public class SalesRepresentativeManager {
+public class SalesRepManager {
 	private String name;
 	private String afm;
 	private ArrayList<Receipt> allReceipts;
@@ -23,7 +23,7 @@ public class SalesRepresentativeManager {
 
 	
 	
-	public SalesRepresentativeManager(){
+	public SalesRepManager(){
 		allReceipts = new ArrayList<Receipt>();
 	}
 	

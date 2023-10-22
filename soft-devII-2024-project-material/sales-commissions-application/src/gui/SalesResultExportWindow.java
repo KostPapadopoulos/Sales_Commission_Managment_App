@@ -16,14 +16,14 @@ import javax.swing.UIManager;
 
 import output.TXTReportFactory;
 import output.XMLReportFactory;
-import data.SalesRepresentativeManager;
+import data.SalesRepManager;
 
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ResultWindow extends JDialog {
+public class SalesResultExportWindow extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel resultWindowPanel = new JPanel();
@@ -34,8 +34,8 @@ public class ResultWindow extends JDialog {
 	private JTextField coatSalesTextField;
 	private JTextField skirtSalesTextField;
 	private JTextField commissionTextField;
-	private SelectionWindow selectionWindow;
-	private SalesRepresentativeManager selectedSalesRepresentativeManager;
+	private SalesRepControlPanel salesRepControlPanel;
+	private SalesRepManager selectedSalesRepManager;
 	private double totalSales;
 	private int totalItems;
 	private float shirtSales;
@@ -45,10 +45,10 @@ public class ResultWindow extends JDialog {
 	private double commission;
 
 
-	public ResultWindow(final SelectionWindow sw, SalesRepresentativeManager receiptManager,double tSales,int tItems,
+	public SalesResultExportWindow(final SalesRepControlPanel sw, SalesRepManager receiptManager,double tSales,int tItems,
 			float shirtS,float skirtS,float trousersS,float coatsS,double com) {
-		selectionWindow = sw;
-		selectedSalesRepresentativeManager = receiptManager;
+		salesRepControlPanel = sw;
+		selectedSalesRepManager = receiptManager;
 		totalSales = tSales;
 		totalItems = tItems;
 		shirtSales = shirtS;
@@ -233,14 +233,14 @@ public class ResultWindow extends JDialog {
 				
 	}
 	private void outputTXTButtonPressed(ActionEvent evt) {
-		TXTReportFactory makeTXTFile = new TXTReportFactory(selectedSalesRepresentativeManager);
+		TXTReportFactory makeTXTFile = new TXTReportFactory(selectedSalesRepManager);
 		makeTXTFile.saveFile();
 		JOptionPane.showMessageDialog(null,"TXT Sales Report Created successfully!");
 
 		
 	}
 	private void outputXMLButtonPressed(ActionEvent evt) {
-		XMLReportFactory makeXMLFile = new XMLReportFactory(selectedSalesRepresentativeManager);
+		XMLReportFactory makeXMLFile = new XMLReportFactory(selectedSalesRepManager);
 		makeXMLFile.saveFile();
 		JOptionPane.showMessageDialog(null,"XML Sales Report Created successfully!");		
 	}
@@ -249,7 +249,7 @@ public class ResultWindow extends JDialog {
 	}
 	
 	private void cancelButtonPressed(ActionEvent evt) {
-		selectionWindow.setVisible(true);
+		salesRepControlPanel.setVisible(true);
 		this.dispose();	
 	}
 	

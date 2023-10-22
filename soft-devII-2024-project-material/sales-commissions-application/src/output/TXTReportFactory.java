@@ -7,14 +7,14 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import data.SalesRepresentativeManager;
+import data.SalesRepManager;
 
 
 public class TXTReportFactory extends ReportFactory{
     private BufferedWriter bufferedWriter = null;
     private String fullPathName;
 	
-	public TXTReportFactory(SalesRepresentativeManager a){
+	public TXTReportFactory(SalesRepManager a){
 		receiptManager = a;
 	}
 

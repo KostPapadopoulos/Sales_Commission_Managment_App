@@ -1,10 +1,10 @@
 package output;
 
-import data.SalesRepresentativeManager;
+import data.SalesRepManager;
 
 public abstract class ReportFactory {
 
-	protected SalesRepresentativeManager receiptManager;
+	protected SalesRepManager receiptManager;
 	
 	public void saveFile(){
 		createFile();

@@ -15,7 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import data.SalesRepresentativeManager;
+import data.SalesRepManager;
 
 public class XMLReportFactory extends ReportFactory{
 	
@@ -25,7 +25,7 @@ public class XMLReportFactory extends ReportFactory{
 	private Document document;	
 	private Element agentElem;
 
-	public XMLReportFactory(SalesRepresentativeManager recMan){
+	public XMLReportFactory(SalesRepManager recMan){
 			receiptManager = recMan;
 	}	
 
