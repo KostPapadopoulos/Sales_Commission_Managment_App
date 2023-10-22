@@ -47,19 +47,19 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 
 
 			fileWriter.write("Country: ");
-			fileWriter.write(country);
+			fileWriter.write(receipt.getCompany().getCompanyAddress().getCountry());
 			fileWriter.write("\n");
 			
 			fileWriter.write("City: ");
-			fileWriter.write(city);
+			fileWriter.write(receipt.getCompany().getCompanyAddress().getCity());
 			fileWriter.write("\n");
 
 			fileWriter.write("Street: ");
-			fileWriter.write(street);
+			fileWriter.write(receipt.getCompany().getCompanyAddress().getStreet());
 			fileWriter.write("\n");
 
 			fileWriter.write("Number: ");
-			fileWriter.write(number);
+			fileWriter.write(String.valueOf((int) receipt.getCompany().getCompanyAddress().getStreetNumber()));
 			fileWriter.write("\n");
 
 		} catch (IOException e) {

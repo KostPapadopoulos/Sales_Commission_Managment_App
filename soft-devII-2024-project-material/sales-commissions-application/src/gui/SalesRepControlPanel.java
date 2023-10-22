@@ -385,7 +385,7 @@ public class SalesRepControlPanel extends JDialog {
 			agentNameTextField.setText(selectedSalesRepresentantiveManager.getName());
 		}catch(NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"�������� ������ ��������, ����������� ����");
+			JOptionPane.showMessageDialog(null,"Sales Rep information not available. Please check your selection.");
 
 		}
 		
@@ -500,21 +500,8 @@ public class SalesRepControlPanel extends JDialog {
 	}
 
 	private void appendFile() {
-		/* 
-		selectedSalesRepresentantiveManager.getFileAppender().setReceiptID(receiptIDTextField.getText());
-		selectedSalesRepresentantiveManager.getFileAppender().setDate(dateTextField.getText());
-		selectedSalesRepresentantiveManager.getFileAppender().setKind(kindTextField.getText());
-		selectedSalesRepresentantiveManager.getFileAppender().setSales(salesTextField.getText());
-		selectedSalesRepresentantiveManager.getFileAppender().setItems(itemsTextField.getText());
-		selectedSalesRepresentantiveManager.getFileAppender().setCompany(companyTextField.getText());
-		*/
 		ReceiptAppender receiptAppender = selectedSalesRepresentantiveManager.getReceiptAppender(); 
 		receiptAppender.setReceipt(this.receipt);
-		
-		receiptAppender.setCountry(countryTextField.getText());
-		receiptAppender.setCity(cityTextField.getText());
-		receiptAppender.setStreet(streetTextField.getText());
-		receiptAppender.setNumber(numberTextField.getText());
 		receiptAppender.appendFile();
 	}
 	
@@ -535,10 +522,11 @@ public class SalesRepControlPanel extends JDialog {
 			selectedSalesRepresentantiveManager.getReceipts().add(receipt);
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
-			JOptionPane.showMessageDialog(null,"1: � �������� ���������� ��������");
+			System.out.println(receipt.getCompany().getCompanyAddress().getStreet());
+			JOptionPane.showMessageDialog(null,"The receipt was added successfully! ");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"��� ������������ ����� ������ �����, ����������� ����");
+			JOptionPane.showMessageDialog(null,"Error: The receipt you're trying to add contains invalid or missing values. Please check the entered information.");
 
 		}
 	}
