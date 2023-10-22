@@ -404,23 +404,25 @@ public class SelectionWindow extends JDialog {
 		else
 			totalItems = -1;
 		
-		if(shirtRadio.isSelected())
-			shirtSales = selectedReceiptManager.calculateSalesByKind("Shirts");
+		if(shirtRadio.isSelected()){
+			shirtSales = selectedReceiptManager.calculateSalesByKind("Shirt");
+			System.out.println(shirtSales);
+		}
 		else
 			shirtSales = -1;
 		
 		if(skirtRadio.isSelected()  )
-			skirtSales = selectedReceiptManager.calculateSalesByKind("Skirts");
+			skirtSales = selectedReceiptManager.calculateSalesByKind("Skirt");
 		else 
 			skirtSales = -1;
 		
 		if(coatRadio.isSelected())
-			coatsSales = selectedReceiptManager.calculateSalesByKind("Coats");
+			coatsSales = selectedReceiptManager.calculateSalesByKind("Coat");
 		else 
 			coatsSales = -1;
 		
 		if(trousersRadio.isSelected())
-			trousersSales = selectedReceiptManager.calculateSalesByKind("Trousers");
+			trousersSales = selectedReceiptManager.calculateSalesByKind("Trouser");
 		else 
 			trousersSales = -1;
 		

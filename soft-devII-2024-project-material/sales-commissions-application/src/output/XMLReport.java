@@ -49,19 +49,19 @@ public class XMLReport extends Report{
         	 agentElem.appendChild(totalSales);
         	 
         	 Element trouserSales = document.createElement("TrouserSales");
-        	 trouserSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Trousers"))));
+        	 trouserSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Trouser"))));
         	 agentElem.appendChild(trouserSales);
         	 
         	 Element skirtsSales = document.createElement("SkirtsSales");
-        	 skirtsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Skirts"))));
+        	 skirtsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Skirt"))));
         	 agentElem.appendChild(skirtsSales);
         	 
         	 Element shirtsSales = document.createElement("ShirtsSales");
-        	 shirtsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Shirts"))));
+        	 shirtsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Shirt"))));
         	 agentElem.appendChild(shirtsSales);
         	 
         	 Element coatsSales = document.createElement("CoatsSales");
-        	 coatsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Coats"))));
+        	 coatsSales.appendChild(document.createTextNode(Float.toString(receiptManager.calculateSalesByKind("Coat"))));
         	 agentElem.appendChild(coatsSales);
         	 
         	 Element commission = document.createElement("Commission");

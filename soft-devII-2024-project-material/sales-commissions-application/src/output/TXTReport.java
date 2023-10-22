@@ -36,16 +36,16 @@ public class TXTReport extends Report{
             bufferedWriter.write("Total Sales: " + receiptManager.calculateTotalSales());
             bufferedWriter.newLine();
  
-            bufferedWriter.write("Trousers Sales: " + receiptManager.calculateSalesByKind("Trousers"));
+            bufferedWriter.write("Trousers Sales: " + receiptManager.calculateSalesByKind("Trouser"));
             bufferedWriter.newLine();
 
-            bufferedWriter.write("Skirts Sales: " + receiptManager.calculateSalesByKind("Skirts"));
+            bufferedWriter.write("Skirts Sales: " + receiptManager.calculateSalesByKind("Skirt"));
             bufferedWriter.newLine();
 
-            bufferedWriter.write("Shirts Sales: " + receiptManager.calculateSalesByKind("Shirts"));
+            bufferedWriter.write("Shirts Sales: " + receiptManager.calculateSalesByKind("Shirt"));
             bufferedWriter.newLine();
             
-            bufferedWriter.write("Coats Sales: " + receiptManager.calculateSalesByKind("Coats"));
+            bufferedWriter.write("Coats Sales: " + receiptManager.calculateSalesByKind("Coat"));
             bufferedWriter.newLine();
 
             bufferedWriter.write("Commission: " + receiptManager.calculateCommission());
