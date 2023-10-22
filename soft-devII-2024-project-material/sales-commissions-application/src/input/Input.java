@@ -3,12 +3,12 @@ package input;
 
 import java.io.File;
 
-import data.ReceiptManager;
+import data.SalesRepresentativeManager;
 import data.Receipt;
 
 public abstract class Input {
 	
-	protected ReceiptManager receiptManager;
+	protected SalesRepresentativeManager receiptManager;
 	protected File inputFile;
 	protected String inputFilePath;
 	protected String name;
@@ -30,7 +30,7 @@ public abstract class Input {
 
 	
 	public Input() {
-		receiptManager = new ReceiptManager();
+		receiptManager = new SalesRepresentativeManager();
 		kind  = new String("");
 	}
 	
@@ -75,7 +75,7 @@ public abstract class Input {
 			receipt.getCompany().getCompanyAddress().setStreetNumber(companyStreetNumber);
 			receiptManager.getReceipts().add(receipt);
 	}
-	public ReceiptManager getReceiptManager() {
+	public SalesRepresentativeManager getReceiptManager() {
 		return receiptManager;
 	}
 

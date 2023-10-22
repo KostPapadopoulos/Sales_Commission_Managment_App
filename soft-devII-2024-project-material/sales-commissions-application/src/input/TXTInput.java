@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 public class TXTInput extends Input{
-	BufferedReader br = null;
+	private BufferedReader br = null;
 
 	public TXTInput(File recieptFileTXT){
 		this.inputFile = recieptFileTXT;

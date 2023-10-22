@@ -16,9 +16,9 @@ import org.xml.sax.SAXException;
 
 
 public class XMLInput extends Input {
-	DocumentBuilder docBuilder;
-	Document doc = null;
-	NodeList nodeLst = null;
+	private DocumentBuilder docBuilder;
+	private Document doc = null;
+	private NodeList nodeLst = null;
  
 	public XMLInput(File receiptFileXML ){
 		inputFile = receiptFileXML;
