@@ -24,7 +24,9 @@ public abstract class Input {
 	protected String companyStreet;
 	protected int companyStreetNumber;
 
-	public abstract void readFile();
+	public void readFile(){
+		openFile();
+	}
 
 	
 	public Input() {
@@ -77,5 +79,7 @@ public abstract class Input {
 		return receiptManager;
 	}
 
+	public abstract void openFile();
+	public abstract void readReceiptDataFromFile();
 	
 }

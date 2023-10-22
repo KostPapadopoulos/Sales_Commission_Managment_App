@@ -1,32 +1,55 @@
 package input;
 
 import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 
 
 public class XMLInput extends Input {
+	DocumentBuilder docBuilder;
+	Document doc = null;
+	NodeList nodeLst = null;
  
 	public XMLInput(File receiptFileXML ){
 		inputFile = receiptFileXML;
 		
 	}
-    public void readFile() {
-        try {
-        	DocumentBuilderFactory docBuilderFactory 
+
+	@Override
+	public void openFile(){
+		DocumentBuilderFactory docBuilderFactory 
 			= DocumentBuilderFactory.newInstance();
-        	DocumentBuilder docBuilder
-			= docBuilderFactory.newDocumentBuilder();
-        	Document doc = docBuilder.parse(inputFile);
+        	
+			try {
+				docBuilder = docBuilderFactory.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				e.printStackTrace();
+			}
+			try {
+				doc = docBuilder.parse(inputFile);
+			} catch (SAXException | IOException e) {
+				e.printStackTrace();
+			}
         	 
         	doc.getDocumentElement().normalize();
-            NodeList nodeLst = doc.getElementsByTagName("Agent");
-			
+            nodeLst = doc.getElementsByTagName("Agent");
+			readReceiptDataFromFile();
+			// Xrhsimopoihsame try with opote otan teleiwnei h open kleinei ton BufferReader kai etsi den mporei na ton xrhsimopoihsei h readReceiptDataFromFile
+
+	}
+    public void readReceiptDataFromFile() {
+        try {
+        	
         	name = ((Element) nodeLst.item(0)).getElementsByTagName("Name").
 			item(0).getChildNodes().item(0).getNodeValue().trim();
 			

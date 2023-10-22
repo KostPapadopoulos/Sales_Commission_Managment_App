@@ -9,47 +9,49 @@ import java.io.IOException;
 
 
 public class TXTInput extends Input{
+	BufferedReader br = null;
 
 	public TXTInput(File recieptFileTXT){
 		this.inputFile = recieptFileTXT;
 		inputFilePath =  inputFile.getAbsolutePath();
 		
 	}
-	
-	@Override //O pio aplos ALGORITHMIKA tropos
-	public void readFile()  {
-		 BufferedReader br = null;
-	    try {
-	            	
-			br = new BufferedReader(new FileReader(inputFilePath));
+
+	@Override
+	public void openFile() {
+		try (BufferedReader localBr = new BufferedReader(new FileReader(inputFilePath))) {
+			this.br = localBr;
+			readReceiptDataFromFile();
+			// Xrhsimopoihsame try with opote otan teleiwnei h open kleinei ton BufferReader kai etsi den mporei na ton xrhsimopoihsei h readReceiptDataFromFile
+			
 		} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
+	}
+	
+	@Override //O pio aplos ALGORITHMIKA tropos
+	public void readReceiptDataFromFile()  {
 		String line = "";
 	    try {
-			line = br.readLine();
+			line = this.br.readLine();
 			name = (line.substring(line.indexOf(":") + 2).trim());
-			System.out.println(name);
 			line = br.readLine();
 			afm = (line.substring(line.indexOf(":") + 1).trim());
-			System.out.println(afm);
 			addReceiptManager();
 			line = br.readLine();
 			line = br.readLine();
 			line = br.readLine();
 			line = br.readLine();
-			System.out.println(line);
 
 			while (line != null) {
-				String valueString = (line.substring(line.indexOf(":") + 1).trim());
-				receiptID = (Integer.parseInt(valueString));	
-				System.out.println("Receipt ID " + receiptID);
+				receiptID = (Integer.parseInt(line.substring(line.indexOf(":") + 1).trim()));	
 				line = br.readLine();
-				System.out.println("LINE GAMW 1 " + line);
 				
 				date = (line.substring(line.indexOf(":") + 1).trim());
 				line = br.readLine();			
-				System.out.println("LINE GAMW 2 " + line);
 
 				kind = (line.substring(line.indexOf(":") + 1).trim());
 				line = br.readLine();		
@@ -76,21 +78,19 @@ public class TXTInput extends Input{
 				addReceipt();
 				line = br.readLine();		
 				line = br.readLine();	
-				System.out.println(line);
-				if (line.trim().isEmpty()) {
-					line = br.readLine();	
 					
-				}	
 
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		/* 
 	    try {
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 	
 	}
 	
