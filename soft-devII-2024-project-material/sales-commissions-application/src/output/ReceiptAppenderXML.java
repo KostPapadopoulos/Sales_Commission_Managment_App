@@ -28,7 +28,8 @@ public class ReceiptAppenderXML  extends ReceiptAppender{
 	@Override
 	public void openFile() throws IOException {
 		this.docFactory = DocumentBuilderFactory.newInstance();
-			
+				System.out.println(doc);
+
 			try {
 				this.docBuilder = docFactory.newDocumentBuilder();
 			} catch (ParserConfigurationException e) {
@@ -79,19 +80,19 @@ public class ReceiptAppenderXML  extends ReceiptAppender{
 			receiptElem.appendChild(companyElem);
 	       	
 	       	Element countryElem = doc.createElement("Country");
-	       	countryElem.appendChild(doc.createTextNode(country));
+	       	countryElem.appendChild(doc.createTextNode(receipt.getCompany().getCompanyAddress().getCountry()));
 	       	receiptElem.appendChild(countryElem);
 	       	
 	       	Element cityElem = doc.createElement("City");
-	       	cityElem.appendChild(doc.createTextNode(city));
+	       	cityElem.appendChild(doc.createTextNode(receipt.getCompany().getCompanyAddress().getCity()));
 	       	receiptElem.appendChild(cityElem);
 	       	
 	       	Element streetElem = doc.createElement("Street");
-	       	streetElem.appendChild(doc.createTextNode(street));
+	       	streetElem.appendChild(doc.createTextNode(receipt.getCompany().getCompanyAddress().getStreet()));
 	       	receiptElem.appendChild(streetElem);
 	       	
 	       	Element numberElem = doc.createElement("Number");
-	       	numberElem.appendChild(doc.createTextNode(number));
+	       	numberElem.appendChild(doc.createTextNode(String.valueOf((int) receipt.getCompany().getCompanyAddress().getStreetNumber())));
 	       	receiptElem.appendChild(numberElem);
 
 		}catch (Exception e){

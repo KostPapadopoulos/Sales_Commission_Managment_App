@@ -30,7 +30,6 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 
 			fileWriter.write("Kind: ");
 			fileWriter.write(receipt.getKind());
-			System.out.println(receipt.getKind());
 			fileWriter.write("\n");
 
 			fileWriter.write("Sales: ");
