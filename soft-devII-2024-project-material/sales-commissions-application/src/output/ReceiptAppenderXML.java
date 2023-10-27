@@ -121,6 +121,7 @@ public class ReceiptAppenderXML  extends ReceiptAppender{
 	}
 
 
+	/*
 	public void setCountry(String country) {
 		this.country = country;
 	}
@@ -138,6 +139,6 @@ public class ReceiptAppenderXML  extends ReceiptAppender{
 	public void setNumber(String number) {
 		this.number = number;
 	}
-
+	*/
 
 }

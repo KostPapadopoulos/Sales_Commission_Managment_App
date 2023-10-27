@@ -66,6 +66,7 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 			e.printStackTrace();
 		}
 	}
+	
 
 	@Override
 	public void closeFile() throws IOException {
@@ -73,6 +74,7 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 
 	}
 
+	/*
 	public void setCountry(String country) {
 		this.country = country;
 	}
@@ -90,5 +92,6 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 	public void setNumber(String number) {
 		this.number = number;
 	}
+	*/
 
 }
