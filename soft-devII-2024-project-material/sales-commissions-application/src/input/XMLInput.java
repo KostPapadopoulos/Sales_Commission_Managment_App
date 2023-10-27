@@ -96,9 +96,6 @@ public class XMLInput extends Input {
 				addReceipt();
             }
 
-        	
-            
-        
             
         } catch (Exception e) {
         	JOptionPane.showMessageDialog
