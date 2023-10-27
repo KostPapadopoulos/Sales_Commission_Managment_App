@@ -1,4 +1,5 @@
 package gui;
+import input.HTMLInput;
 import input.TXTInput;
 import input.XMLInput;
 
@@ -91,6 +92,11 @@ public class SalesRepInfoInputWindow extends JDialog {
 				buttonXMLInput.setBackground(UIManager.getColor("InternalFrame.borderLight"));
 				buttonXMLInput.setFocusPainted(false);
 				
+				JButton buttonHTMLInput = new JButton("\u0395\u03B9\u03C3\u03B1\u03B3\u03C9\u03B3\u03AE \u03B1\u03C0\u03CC HTML");
+				buttonHTMLInput.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+				buttonHTMLInput.setBackground(UIManager.getColor("InternalFrame.borderLight"));
+				buttonHTMLInput.setFocusPainted(false);
+				
 				
 				JLabel label = new JLabel("\u0395\u03C0\u03B9\u03BB\u03AD\u03BE\u03C4\u03B5 \u03B5\u03AF\u03B4\u03BF\u03C2 \u03B1\u03C1\u03C7\u03B5\u03AF\u03BF\u03C5 \u03B3\u03B9\u03B1 \u03C6\u03CC\u03C1\u03C4\u03C9\u03C3\u03B7 \u03B1\u03C0\u03BF\u03B4\u03B5\u03AF\u03BE\u03B5\u03C9\u03BD:");
 				label.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -141,7 +147,8 @@ public class SalesRepInfoInputWindow extends JDialog {
 								.addGroup(gl_inputWindowPanel.createParallelGroup(Alignment.LEADING, false)
 									.addComponent(label)
 									.addComponent(buttonTXTInput, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-									.addComponent(buttonXMLInput, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+									.addComponent(buttonXMLInput, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(buttonHTMLInput, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 							.addGap(18)
 							.addGroup(gl_inputWindowPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(salesRepresentativeList, GroupLayout.PREFERRED_SIZE, 309, GroupLayout.PREFERRED_SIZE)
@@ -163,8 +170,10 @@ public class SalesRepInfoInputWindow extends JDialog {
 							.addGroup(gl_inputWindowPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_inputWindowPanel.createSequentialGroup()
 									.addComponent(buttonTXTInput, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-									.addGap(42)
-									.addComponent(buttonXMLInput, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+									.addGap(20)
+									.addComponent(buttonXMLInput, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+									.addGap(20)
+									.addComponent(buttonHTMLInput, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
 								.addComponent(salesRepresentativeList, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
 							.addGap(139)
 							.addGroup(gl_inputWindowPanel.createParallelGroup(Alignment.LEADING)
@@ -182,6 +191,11 @@ public class SalesRepInfoInputWindow extends JDialog {
 				buttonXMLInput.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						insertFromXML(e);
+					}
+				});
+				buttonHTMLInput.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						insertFromHTML(evt);
 					}
 				});
 	}
@@ -269,9 +283,45 @@ public class SalesRepInfoInputWindow extends JDialog {
 
 		}
         
-             
+        
 	}
 	
+	private void insertFromHTML(ActionEvent evt3){
+		JFileChooser HTMLFileChooser;
+		HTMLFileChooser = new JFileChooser();     
+		HTMLFileChooser.setFileSelectionMode(JFileChooser.APPROVE_OPTION);		       
+		HTMLFileChooser.showOpenDialog(null);
+		boolean agentDuplicate = false;
+		try{
+			File recieptFileHTML = HTMLFileChooser.getSelectedFile();
+			HTMLInput inputFileHTML = new HTMLInput(recieptFileHTML);	
+			inputFileHTML.readFile();
+			salesRepManager = inputFileHTML.getReceiptManager();
+			salesRepManager.setFileType("HTML");
+			salesRepManager.getReceiptAppender().setFileToAppend(recieptFileHTML);				
+			allSalesRepresentatives.add(salesRepManager);
+			for(int i = 0; i< listModel.getSize(); i++){
+				if(salesRepManager.getName().equals(listModel.getElementAt(i))){
+					agentDuplicate = true;
+
+				}
+			}
+			if(agentDuplicate == true){
+				JOptionPane.showMessageDialog(null,"The selected Sales Representative's file is already loaded!");
+
+			}
+			else{
+				listModel.addElement(salesRepManager.getName());
+				salesRepresentativeList.setModel(listModel);
+				fileTypeFlag = "HTML";
+			}
+		}catch (IllegalArgumentException e){
+		
+			JOptionPane.showMessageDialog(null,"The XML file you're trying to load has an illegal XML argument. " + 
+			"Please check your file and try again");
+
+		}
+	}
 	
 	private void selectSalesRepresentative(MouseEvent e){
 		

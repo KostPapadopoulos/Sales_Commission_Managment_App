@@ -15,6 +15,7 @@ import java.awt.Font;
 
 import javax.swing.UIManager;
 
+import output.HTMLReportFactory;
 import output.TXTReportFactory;
 import output.XMLReportFactory;
 import data.SalesRepManager;
@@ -93,6 +94,18 @@ public class SalesResultExportWindow extends JDialog {
 			txtReportButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			txtReportButton.setBounds(436, 32, 163, 81);
 			resultWindowPanel.add(txtReportButton);
+		}
+		{
+			JButton htmlReportButton = new JButton("\u0395\u03BE\u03B1\u03B3\u03C9\u03B3\u03AE \u03C3\u03B5 HTML");
+			htmlReportButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					outputHTMLButtonPressed(evt);
+				}
+			});
+			htmlReportButton.setBackground(UIManager.getColor("Button.light"));
+			htmlReportButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			htmlReportButton.setBounds(436, 110, 163, 83);
+			resultWindowPanel.add(htmlReportButton);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("\u03A3\u03C5\u03BD\u03BF\u03BB\u03B9\u03BA\u03AE \u03B1\u03BE\u03AF\u03B1");
@@ -263,6 +276,23 @@ public class SalesResultExportWindow extends JDialog {
 		makeXMLFile.saveFile(fileToSave);
 		JOptionPane.showMessageDialog(null,"XML Sales Report Created successfully!");		
 	}
+	
+	private void outputHTMLButtonPressed(ActionEvent evt) {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");
+		int userSelection = fileChooser.showSaveDialog(this);
+		    
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			fileToSave = fileChooser.getSelectedFile();
+		}
+		HTMLReportFactory makeHTMLFile = new HTMLReportFactory(selectedSalesRepManager);
+		makeHTMLFile.saveFile(fileToSave);
+		JOptionPane.showMessageDialog(null,"HTML Sales Report Created successfully!");
+
+		
+	}
+
+	
 	private void okButtonPressed(ActionEvent evt) {
 		System.exit(0);		
 	}
