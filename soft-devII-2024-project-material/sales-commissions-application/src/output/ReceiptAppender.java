@@ -40,10 +40,12 @@ public abstract class ReceiptAppender {
 	public abstract void closeFile() throws IOException;
 	public abstract void addReceiptDataToFile();
 	
+	/*
 	public abstract void setCountry(String country); 
 	public abstract void setCity(String city);
 	public abstract void setStreet(String street);
 	public abstract void setNumber(String number);
+	*/
 
 }
 
