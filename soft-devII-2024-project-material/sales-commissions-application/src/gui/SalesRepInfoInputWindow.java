@@ -317,7 +317,7 @@ public class SalesRepInfoInputWindow extends JDialog {
 			}
 		}catch (IllegalArgumentException e){
 		
-			JOptionPane.showMessageDialog(null,"The XML file you're trying to load has an illegal XML argument. " + 
+			JOptionPane.showMessageDialog(null,"The HTML file you're trying to load has an illegal HTML argument. " + 
 			"Please check your file and try again");
 
 		}

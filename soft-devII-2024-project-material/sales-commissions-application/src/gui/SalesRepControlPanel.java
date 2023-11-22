@@ -468,7 +468,7 @@ public class SalesRepControlPanel extends JDialog {
 	
 	private void addReceiptButtonPressed(ActionEvent evt) {
 		if(areAllReceiptFieldsEmpty()){
-			JOptionPane.showMessageDialog(null,"All new Receipt are empty!");
+			JOptionPane.showMessageDialog(null,"All new Receipt fields are empty!");
 			
 		}
 		/*else if(kindTextField.toString().equalsIgnoreCase("Coats") == false && 

@@ -27,7 +27,7 @@ public class HTMLInput extends Input{
 	        //File input = new File(inputFilePath);
 	        doc = Jsoup.parse(inputFile, "UTF-8");
 
-	        // Call your method to parse and process the HTML data
+	        // Call method to parse and process the HTML data
 	        readReceiptDataFromFile(inputFilePath);
 
 	    } catch (Exception e) {
@@ -40,7 +40,6 @@ public class HTMLInput extends Input{
 	
 	public void readReceiptDataFromFile(String htmlFilePath) {
 	
-	        // Assuming that your HTML structure is similar to your XML structure
 	        name = doc.select("Name").text().trim();
 	        afm = doc.select("AFM").text().trim();
 	        addReceiptManager();

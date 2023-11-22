@@ -16,7 +16,7 @@ public class ReceiptAppenderHTML extends ReceiptAppender {
     @Override
     public void addReceiptDataToFile() {
         try {
-            // You can customize the HTML format according to your needs
+            
             writer.write("<html>\n");
             writer.write("<head>\n");
             writer.write("<title>Receipt Data</title>\n");
