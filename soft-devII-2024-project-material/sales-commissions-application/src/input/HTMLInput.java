@@ -28,7 +28,7 @@ public class HTMLInput extends Input{
 	        doc = Jsoup.parse(inputFile, "UTF-8");
 
 	        // Call method to parse and process the HTML data
-	        readReceiptDataFromFile(inputFilePath);
+	        readReceiptDataFromFile();
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -37,8 +37,8 @@ public class HTMLInput extends Input{
 	}
 	
 
-	
-	public void readReceiptDataFromFile(String htmlFilePath) {
+	@Override
+	public void readReceiptDataFromFile() {
 	
 	        name = doc.select("Name").text().trim();
 	        afm = doc.select("AFM").text().trim();
@@ -49,7 +49,6 @@ public class HTMLInput extends Input{
 	            receiptID = Integer.parseInt(receipt.select("ReceiptID").text().trim());
 	            date = receipt.select("Date").text().trim();
 	            kind = receipt.select("Kind").text().trim();
-	            System.out.println(kind);
 	            sales = Double.parseDouble(receipt.select("Sales").text().trim());
 	            items = Integer.parseInt(receipt.select("Items").text().trim());
 	            companyName = receipt.select("Company").text().trim();
@@ -62,9 +61,5 @@ public class HTMLInput extends Input{
 	    
 	}
 
-	@Override
-	public void readReceiptDataFromFile() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
