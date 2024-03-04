@@ -12,7 +12,7 @@ import data.SalesRepManager;
 
 public class TXTReportFactory extends ReportFactory{
     private BufferedWriter bufferedWriter = null;
-    //private String fullPathName;
+    
 	
 	public TXTReportFactory(SalesRepManager a){
 		receiptManager = a;
@@ -21,7 +21,7 @@ public class TXTReportFactory extends ReportFactory{
     @Override
     public void createFile(File file){
         try{
-        	//fullPathName =  "\\C:\\Users\\papat\\Desktop\\Sales_Commission_Managment_App\\soft-devII-2024-project-material\\Reports\\" + receiptManager.getAfm() + "_SALES.txt";
+        	
         	bufferedWriter = new BufferedWriter(new FileWriter(file));
         }catch (IOException ex){
 			JOptionPane.showMessageDialog(null,"The specified path is not valid!");

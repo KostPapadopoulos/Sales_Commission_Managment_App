@@ -43,7 +43,6 @@ public abstract class Input {
 	
 	public void addReceipt( ){
 		Receipt receipt;
-		// Mallon kai edw den xreiazetai to if else opws sthn Selection Window			
 			if(kind.equals("Shirts")) {
 				receipt= new Receipt();
 				receipt.setKind("Shirt");

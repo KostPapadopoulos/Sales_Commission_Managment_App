@@ -69,8 +69,6 @@ public class XMLInput extends Input {
 				
             	kind = ((Element) receiptsNodeList.item(i))
 				.getElementsByTagName("Kind").item(0).getChildNodes().item(0).getNodeValue().trim();
-				
-            	System.out.println(kind);
             	
             	sales = Double.parseDouble(((Element) receiptsNodeList.item(i)).
 				getElementsByTagName("Sales").item(0).getChildNodes().item(0).getNodeValue().trim());

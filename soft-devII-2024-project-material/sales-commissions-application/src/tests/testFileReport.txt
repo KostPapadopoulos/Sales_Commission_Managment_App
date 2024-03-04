@@ -1,0 +1,10 @@
+Name: Ilias Papadopoulos
+AFM: 666877769
+
+
+Total Sales: 5000.0
+Trousers Sales: 0.0
+Skirts Sales: 10.0
+Shirts Sales: 0.0
+Coats Sales: 0.0
+Commission: 0.0

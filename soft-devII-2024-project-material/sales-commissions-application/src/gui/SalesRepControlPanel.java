@@ -522,7 +522,7 @@ public class SalesRepControlPanel extends JDialog {
 			selectedSalesRepresentantiveManager.getReceipts().add(receipt);
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
-			System.out.println(receipt.getCompany().getCompanyAddress().getStreet());
+
 			JOptionPane.showMessageDialog(null,"The receipt was added successfully! ");
 
 		}catch (NumberFormatException e){

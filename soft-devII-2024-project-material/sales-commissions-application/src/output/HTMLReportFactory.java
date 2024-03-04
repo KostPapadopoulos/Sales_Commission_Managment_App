@@ -31,15 +31,21 @@ public class HTMLReportFactory extends ReportFactory {
             bufferedWriter.write("<html><head><title>Receipt Report</title></head><body>");
             
             // Write report content
-            bufferedWriter.write("<h1>Name: " + receiptManager.getName() + "</h1>");
-            bufferedWriter.write("<h2>AFM: " + receiptManager.getAfm() + "</h2>");
-            
-            bufferedWriter.write("<h3>Total Sales: " + receiptManager.calculateTotalSales() + "</h3>");
-            bufferedWriter.write("<h3>Trousers Sales: " + receiptManager.calculateSalesByKind("Trouser") + "</h3>");
-            bufferedWriter.write("<h3>Skirts Sales: " + receiptManager.calculateSalesByKind("Skirt") + "</h3>");
-            bufferedWriter.write("<h3>Shirts Sales: " + receiptManager.calculateSalesByKind("Shirt") + "</h3>");
-            bufferedWriter.write("<h3>Coats Sales: " + receiptManager.calculateSalesByKind("Coat") + "</h3>");
-            bufferedWriter.write("<h3>Commission: " + receiptManager.calculateCommission() + "</h3>");
+            bufferedWriter.write("<Name>Name: " + receiptManager.getName() + "</Name>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<AFM>AFM: " + receiptManager.getAfm() + "</AFM>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<TotalSales>Total Sales: " + receiptManager.calculateTotalSales() + "</TotalSales>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<TrousersSales>Trousers Sales: " + receiptManager.calculateSalesByKind("Trouser") + "</TrousersSales>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<SkirtsSales>Skirts Sales: " + receiptManager.calculateSalesByKind("Skirt") + "</SkirtsSales>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<ShirtsSales>Shirts Sales: " + receiptManager.calculateSalesByKind("Shirt") + "</ShirtsSales>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<CoatsSales>Coats Sales: " + receiptManager.calculateSalesByKind("Coat") + "</CoatsSales>");
+            bufferedWriter.write("<br>");
+            bufferedWriter.write("<Commission>Commission: " + receiptManager.calculateCommission() + "</Commission>");
             
             // Write HTML footer
             bufferedWriter.write("</body></html>");

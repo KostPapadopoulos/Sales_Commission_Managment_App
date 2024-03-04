@@ -10,7 +10,7 @@ public class ReceiptAppenderHTML extends ReceiptAppender {
 
     @Override
     public void openFile() throws IOException {
-        writer = new BufferedWriter(new FileWriter(fileToAppend));
+        writer = new BufferedWriter(new FileWriter(fileToAppend, true));
     }
 
     @Override
@@ -22,21 +22,21 @@ public class ReceiptAppenderHTML extends ReceiptAppender {
             writer.write("<title>Receipt Data</title>\n");
             writer.write("</head>\n");
             writer.write("<body>\n");
-            writer.write("<h1>Receipt</h1>\n");
-            writer.write("<ul>\n");
-            writer.write("<li>Receipt ID: " + receipt.getReceiptID() + "</li>\n");
-            writer.write("<li>Date: " + receipt.getDate() + "</li>\n");
-            writer.write("<li>Kind: " + receipt.getKind() + "</li>\n");
-            writer.write("<li>Sales: " + receipt.getSales() + "</li>\n");
-            writer.write("<li>Items: " + receipt.getItems() + "</li>\n");
-            writer.write("<li>Company: " + receipt.getCompany().getName() + "</li>\n");
-            writer.write("<li>Country: " + receipt.getCompany().getCompanyAddress().getCountry() + "</li>\n");
-            writer.write("<li>City: " + receipt.getCompany().getCompanyAddress().getCity() + "</li>\n");
-            writer.write("<li>Street: " + receipt.getCompany().getCompanyAddress().getStreet() + "</li>\n");
-            writer.write("<li>Number: " + (int) receipt.getCompany().getCompanyAddress().getStreetNumber() + "</li>\n");
-            writer.write("</ul>\n");
+            writer.write("<Receipt>Receipt");
+            writer.write("<ReceiptID>" + (int) receipt.getReceiptID() + "</ReceiptID>\n");
+            writer.write("<Date>" + receipt.getDate()+ "</Date>\n");
+            writer.write("<Kind>" + receipt.getKind() + "s</Kind>\n");
+            writer.write("<Sales>" + receipt.getSales() + "</Sales>\n");
+            writer.write("<Items>" + receipt.getItems() + "</Items>\n");
+            writer.write("<Company>" +receipt.getCompany().getName() + "</Company>\n");
+            writer.write("<Country>" +receipt.getCompany().getCompanyAddress().getCountry() + "</Country>\n");
+            writer.write("<City>" + receipt.getCompany().getCompanyAddress().getCity() + "</City>\n");
+            writer.write("<Street>" + receipt.getCompany().getCompanyAddress().getStreet() + "</Street>\n");
+            writer.write("<Number>" + (int) receipt.getCompany().getCompanyAddress().getStreetNumber() + "</Number>\n");
+            writer.write("</Receipt>\n");
             writer.write("</body>\n");
             writer.write("</html>\n");
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

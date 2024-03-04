@@ -238,7 +238,7 @@ public class SalesRepInfoInputWindow extends JDialog {
 			
 		}catch (NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null," 3:��� ���������� ������ ������");
+			JOptionPane.showMessageDialog(null," File loading proccess has been canceled!");
 
 		}catch (NumberFormatException e){
 			JOptionPane.showMessageDialog(null,"The TXT file you're trying to load has a problem with the Receipt format! " + 

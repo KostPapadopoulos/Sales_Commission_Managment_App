@@ -64,7 +64,7 @@ public class ReceiptAppenderXML  extends ReceiptAppender{
 	       	receiptElem.appendChild(dateElem);
        	
 	       	Element kindElem = doc.createElement("Kind");
-	       	kindElem.appendChild(doc.createTextNode(receipt.getKind()));
+	       	kindElem.appendChild(doc.createTextNode(receipt.getKind()+ "s"));
 	       	receiptElem.appendChild(kindElem);
 	       	
 	       	Element salesElem = doc.createElement("Sales");

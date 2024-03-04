@@ -4,6 +4,7 @@ package data;
 import java.util.ArrayList;
 
 import output.ReceiptAppender;
+import output.ReceiptAppenderHTML;
 import output.ReceiptAppenderTXT;
 import output.ReceiptAppenderXML;
 
@@ -31,9 +32,16 @@ public class SalesRepManager {
 		if(fileType.equals("TXT")){
 			fileAppender = new ReceiptAppenderTXT();
 		}	
-		else{
+		else if (fileType.equals("XML")){
 			fileAppender = new ReceiptAppenderXML();
-		}	
+		}
+		else if (fileType.equals("HTML")){
+			fileAppender = new ReceiptAppenderHTML();
+		}
+		else {
+			throw new IllegalArgumentException("Invalid filetype. Only TXT or XML or HTLM are accepted");
+		}
+
 	}
 	public ArrayList<Receipt> getReceipts(){
 		return allReceipts;
@@ -83,7 +91,7 @@ public class SalesRepManager {
 
 	public boolean isInFirstCommissionCategory(){
 		double totalSales = this.calculateTotalSales();
-
+		this.res = false;
 		if ( totalSales > LOWER_SALES_THRESHOLD  && totalSales <= MIDDLE_SALES_THRESHOLD){
 			res = true;
 		}
@@ -92,7 +100,7 @@ public class SalesRepManager {
 
 	public boolean isInSecondCommissionCategory() {
 		double totalSales = this.calculateTotalSales();
-		
+		this.res = false;
 		if(totalSales > MIDDLE_SALES_THRESHOLD && totalSales <= UPPER_SALES_THRESHOLD ){
 			res = true;
 		}
@@ -101,7 +109,7 @@ public class SalesRepManager {
 
 	public boolean isInThirdCommissionCategory() {
 		double totalSales = this.calculateTotalSales();
-
+		this.res = false;
 		if(totalSales > UPPER_SALES_THRESHOLD ) {
 			res = true;
 		}
@@ -120,7 +128,7 @@ public class SalesRepManager {
 			commission = (((totalSales - MIDDLE_SALES_THRESHOLD) * MIDDLE_COMMISSION_RATE) + (MIDDLE_SALES_THRESHOLD * LOWER_COMMISSION_RATE));			
 		}
 		else if(isInThirdCommissionCategory()) {
-			commission = ((MIDDLE_SALES_THRESHOLD * LOWER_COMMISSION_RATE + 30000 * MIDDLE_COMMISSION_RATE) + (totalSales - UPPER_SALES_THRESHOLD) * UPPER_COMMISSION_RATE);			
+			commission = (((MIDDLE_SALES_THRESHOLD * LOWER_COMMISSION_RATE) + 30000 * MIDDLE_COMMISSION_RATE) + ((totalSales - UPPER_SALES_THRESHOLD) * UPPER_COMMISSION_RATE));			
 		}
 		return commission;
 	}

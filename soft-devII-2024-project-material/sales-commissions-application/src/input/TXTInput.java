@@ -9,12 +9,12 @@ import java.io.IOException;
 
 
 public class TXTInput extends Input{
-	private BufferedReader br = null;
+	protected BufferedReader br = null;
 
 	public TXTInput(File recieptFileTXT){
 		this.inputFile = recieptFileTXT;
 		inputFilePath =  inputFile.getAbsolutePath();
-		
+
 	}
 
 	@Override

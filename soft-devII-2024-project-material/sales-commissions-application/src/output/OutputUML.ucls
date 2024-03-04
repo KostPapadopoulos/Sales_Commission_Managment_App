@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="output.ReportFactory" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/ReportFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="195" x="225" y="117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="output.HTMLReportFactory" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/HTMLReportFactory.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="218" x="-5" y="379"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="output.TXTReportFactory" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/TXTReportFactory.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="210" x="376" y="358"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="output.XMLReportFactory" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/XMLReportFactory.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="234" x="666" y="177"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="output.ReceiptAppender" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/ReceiptAppender.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="167" x="1388" y="-26"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="output.ReceiptAppenderHTML" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/ReceiptAppenderHTML.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="160" x="1067" y="260"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="output.ReceiptAppenderTXT" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/ReceiptAppenderTXT.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1441" y="498"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="output.ReceiptAppenderXML" project="soft-devII-2024-project-material" 
+    file="/soft-devII-2024-project-material/sales-commissions-application/src/output/ReceiptAppenderXML.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="205" x="1639" y="325"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="14">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

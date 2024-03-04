@@ -14,8 +14,7 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 
 	@Override
 	public void addReceiptDataToFile(){
-		System.out.println("Mpike sto TXT");
-		System.out.println(fileToAppend.getAbsolutePath());
+
 
 		try {
 			
@@ -29,7 +28,7 @@ public class ReceiptAppenderTXT extends ReceiptAppender{
 			fileWriter.write("\n");
 
 			fileWriter.write("Kind: ");
-			fileWriter.write(receipt.getKind());
+			fileWriter.write(receipt.getKind() + "s");
 			fileWriter.write("\n");
 
 			fileWriter.write("Sales: ");

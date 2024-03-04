@@ -1,0 +1,37 @@
+Name: Konstantinos Papathanasiou
+AFM: 130456093
+
+Receipts:
+
+Receipt ID: 1
+Date: 25/2/2014
+Kind: Coats
+Sales: 2000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 2
+Date: 25/2/2014
+Kind: Skirts
+Sales: 4000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Souliou
+Number: 45 
+
+Receipt ID: 50
+Date: 12/12/2023
+Kind: Skirts
+Sales: 5000
+Items: 10
+Company: Test Company
+Country: Test Country
+City: Test City
+Street: Test Street
+Number: 85
